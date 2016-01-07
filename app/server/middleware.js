@@ -3,6 +3,8 @@ var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var business = require('./routes/business');
+var inventory = require('./routes/inventory');
 
 // Middleware can be thought of as a magical pipe that water flows through.
 // Each drop of water starts at the top opening of the pipe. As it falls through,
@@ -28,7 +30,10 @@ module.exports = function (app, express) {
   app.use(partials());
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
   app.use(express.static(__dirname + '/../client'));
   app.use(cookieParser('shhhh, very secret'));
   app.use(session({secret: '1234567890QWERTY'}));
+  app.use('/api', business);
+  app.use('/api', inventory);
 };
