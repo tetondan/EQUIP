@@ -3,11 +3,11 @@ var express = require('express');
 var router = express.Router();
 
 ///app.get('/:code', linksController.navToLink);
-router.route('/business/signin').get(function (req, res) {
+router.route('/businesses/signin').get(function (req, res) {
 
 });
 
-router.route('/business/signup').post(function (req, res) {
+router.route('/businesses/signup').post(function (req, res) {
   var data = req.body
   console.log(data);
   var business = new Business({
@@ -24,31 +24,31 @@ router.route('/business/signup').post(function (req, res) {
       console.log(err);
       res.status(404);
     } else {
-      res.status(201).send("Business created"); 
+      res.status(201).send(data.username); 
     }
   })
 });
 
-router.route('/business/signedin').get(function (req, res) {
+router.route('/businesses/signedin').get(function (req, res) {
 
 });
 
-router.route('/business').get(function (req, res) {
+router.route('/businesses').get(function (req, res) {
 
 });
 
 // router.route('/business').post(function (req, res) {
 // });
 
-router.route('/business/:name').put(function (req, res) {
+router.route('/businesses/:name').put(function (req, res) {
 
 });
 
-router.route('/business/:name').get(function (req, res) {
+router.route('/businesses/:name').get(function (req, res) {
 
 });
 
-router.route('/business/:name').delete(function (req, res) {
+router.route('/businesses/:name').delete(function (req, res) {
 
 });
 
