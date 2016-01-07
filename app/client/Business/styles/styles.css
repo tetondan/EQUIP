@@ -2,62 +2,46 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .super {
-  width: 800px;
+  width: 400px;
   height: 900px;
-  margin: 0 auto;
+
 }
 .topContainer {
   width: 800px;
-  height: 180px;
+  height: 220px;
 }
-.header {
-  width: 600px;
-  height: 130px;
-}
+
 .nav {
-  margin-top: 80px;
+  margin-top: 20px;
   margin-left: 20px;
   width: 800px;
   height: 50px;
 }
-.typTitle {
-  float: left;
-  margin-left: 20px;
-  font-size: 80px;
-  width: 100px;
-  height: 120px;
-}
-.timer {
-  width: 80px;
-  height: 80px;
-  float: right;
-  margin: 30px;
-  font-size: 50px;
-  text-align: center;
-  border: black;
-  border: solid;
-  border-width: 1px;
-  border-radius: 40px;
-}
+
 .button {
   display: inline-block;
 }
 .viewContainer {
   width: 800px;
-  height: 450px;
+  height: 300px;
   margin-top: 20px auto;
 }
-.input {
+.itemInput {
+  margin-top: 20px;
+  margin-left: 20px;
   width: 800px;
-  height: 400px;
+  height: 200px;
 }
-.compareField {
-  border-radius: 10px;
+.itemInput > form {
+
 }
-.userField {
-  margin-right: 40px;
-  border-radius: 10px;
+.itemInput > form > input {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-bottom: 10px;
 }
+
 textarea {
 	width: 275px;
 	height: 300px;
