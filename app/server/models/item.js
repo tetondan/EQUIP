@@ -5,9 +5,9 @@ var itemSchema = mongoose.Schema({
   price: {type: Number, required: true},
   desc: {type: String},
   amt: {type: Number, required: true},
-  isIn: {type: Boolean required: true},
+  isIn: {type: Boolean, required: true},
   img: {type: String},
-  business: {type: Schema.Types.ObjectId, ref: 'Business'}
+  business: {type: mongoose.Schema.Types.ObjectId, ref: 'Business'}
 });
 
 var Item = mongoose.model('Item', itemSchema);

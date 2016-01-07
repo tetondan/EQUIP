@@ -1,10 +1,10 @@
 var express = require('express');
-var mongoose = require('mongoose');
+var db = require('./config_db');
 
 var app = express();
 
 // connect to mongo database named "fearlessgerbil"
-mongoose.connect('mongodb://localhost/fearlessgerbil');
+//mongoose.connect('mongodb://localhost/fearlessgerbil');
 
 // configure our server with all the middleware and routing
 require('./middleware.js')(app, express);

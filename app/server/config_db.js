@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/' + //something_here;
+mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/fearlessgerbil';
 mongoose.connect(mongoURI);
 
 // Run in seperate terminal window using 'mongod'
