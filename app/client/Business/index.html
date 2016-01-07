@@ -14,7 +14,13 @@
 
     <div class='topContainer'>
           <img src='styles/60728.svg' style="width:250px;height:175px;">
-   
+
+      <div class='signIn'>
+        <div class='button'>
+         <a ng-click='toggle()' href='#/signIn' ng-model='interesting'>Manage Inventory</a>
+         <!-- <a ui-sref='addInv' ng-model='interesting'>Dash</a> -->
+        </div>
+      </div>
 
       <div ng-show='signedIn' class='nav'>
         <div class='button'>

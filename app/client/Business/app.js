@@ -2,7 +2,7 @@ angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage'])
   .config(function ($stateProvider) {
   	$stateProvider
 	  	.state('signIn' {
-	  	  url: '/signin',
+	  	  url: '/',
 	  	  templateUrl : 'signin/index.html',
 	  	  controller: 'SignIn'
 	  	})
