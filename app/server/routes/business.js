@@ -7,8 +7,26 @@ router.route('/business/signin').get(function (req, res) {
 
 });
 
-router.route('/business/signup').get(function (req, res) {
-
+router.route('/business/signup').post(function (req, res) {
+  var data = req.body
+  console.log(data);
+  var business = new Business({
+    username: data.username,
+    password: data.password,
+    name: data.name,
+    address: data.address,
+    phone: data.phone,
+    website: data.website,
+    email: data.email
+    });
+  business.save(function (err) {
+    if (err){
+      console.log(err);
+      res.status(404);
+    } else {
+      res.status(201).send("Business created"); 
+    }
+  })
 });
 
 router.route('/business/signedin').get(function (req, res) {
@@ -19,9 +37,8 @@ router.route('/business').get(function (req, res) {
 
 });
 
-router.route('/business').post(function (req, res) {
-
-});
+// router.route('/business').post(function (req, res) {
+// });
 
 router.route('/business/:name').put(function (req, res) {
 
