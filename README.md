@@ -1,1 +1,1 @@
-# fearlessgerbil - goooooo
+# Equip - Inventory and payment management
