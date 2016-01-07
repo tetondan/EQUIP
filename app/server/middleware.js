@@ -1,10 +1,10 @@
-var morgan = require('morgan');
+//var morgan = require('morgan');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var business = require('./routes/business');
-var inventory = require('./routes/inventory');
+var item = require('./routes/item');
 
 // Middleware can be thought of as a magical pipe that water flows through.
 // Each drop of water starts at the top opening of the pipe. As it falls through,
@@ -26,7 +26,7 @@ var inventory = require('./routes/inventory');
 // commonly found in a middleware stack.
 
 module.exports = function (app, express) {
-  app.use(morgan('dev'));
+  //app.use(morgan('dev'));
   app.use(partials());
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
@@ -35,5 +35,5 @@ module.exports = function (app, express) {
   app.use(cookieParser('shhhh, very secret'));
   app.use(session({secret: '1234567890QWERTY'}));
   app.use('/api', business);
-  app.use('/api', inventory);
+  app.use('/api', item);
 };

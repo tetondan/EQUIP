@@ -13,4 +13,4 @@ var businessSchema = mongoose.Schema({
 var Business = mongoose.model('Business', businessSchema);
 
 
-module.exports = User;
+module.exports = Business;

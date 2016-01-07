@@ -1,37 +1,25 @@
-var Business = require('../models/business');
+var item = require('../models/item');
 var express = require('express');
 var router = express.Router();
 
 ///app.get('/:code', linksController.navToLink);
-router.route('/business/signin').get(function (req, res) {
+router.route('/item').get(function (req, res) {
 
 });
 
-router.route('/business/signup').get(function (req, res) {
+router.route('/item').post(function (req, res) {
 
 });
 
-router.route('/business/signedin').get(function (req, res) {
+router.route('/item/:id').put(function (req, res) {
 
 });
 
-router.route('/business').get(function (req, res) {
+router.route('/item/:id').get(function (req, res) {
 
 });
 
-router.route('/business').post(function (req, res) {
-
-});
-
-router.route('/business/:name').put(function (req, res) {
-
-});
-
-router.route('/business/:name').get(function (req, res) {
-
-});
-
-router.route('/business/:name').delete(function (req, res) {
+router.route('/item/:id').delete(function (req, res) {
 
 });
 
