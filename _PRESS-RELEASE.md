@@ -16,39 +16,36 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  EQUIP 
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Let us focus on your rental inventory mangement needs, you focus on the gear.
+#  EQUIP 
+
+###  Let us focus on your rental inventory mangement needs, you focus on the gear.
   
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+
   Dealing with the logisitics of your rental inventory and payments can be time consuming, and in order to get ahead in the Rental market a strong web presence is mandatory. Solutions in the past have been expensive and hard to use. Introducing 'Equip', an easy to use and affordable web application enhancing all of your business' inventory managment. In just minutes your business can transition to seamless inventory and payment managment!
   
 ## Problem ##
-  > Describe the problem your product solves.
+
   Most rental businesses have a lot on their hands and the biggest headache of all is managing thier reservations and inventory.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+
   Let EQUIP deal with the logistics of your rental inventory and payments. 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+
   'It is our goal to let your equipment work for you! No more long hours managing your inventory!' Dan Frehner, Equip 
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+
   Setting up an account and adding inventory is painless and fast with our in app system
   Just visit Equip.com to learn more.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+
   "We were spending the vast majority of our time taking reservations and processing payments, but now that we're using Equip we have time to focus on growing our business and can even enjoy our own free time!" Jim and Tom, 'Outdoor Gear Specialities'
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
-  So if you're looking to streamline your rental inventory, visit Equip.com to get started today!
+
+  If you're looking to streamline your rental inventory, visit Equip.com to get started today!
