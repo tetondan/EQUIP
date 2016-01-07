@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
-var buisnessSchema = mongoose.Schema({
-  username: { type: String, required: true, index: { unique: true } },
+var businessSchema = mongoose.Schema({
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
   address: {type: String},
@@ -10,7 +10,7 @@ var buisnessSchema = mongoose.Schema({
   email: {type: String}
 });
 
-var Buisness = mongoose.model('Buisness', buisnessSchema);
+var Business = mongoose.model('Business', businessSchema);
 
 
 module.exports = User;

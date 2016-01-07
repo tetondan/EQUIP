@@ -7,7 +7,7 @@ var itemSchema = mongoose.Schema({
   amt: {type: Number, required: true},
   isIn: {type: Boolean required: true},
   img: {type: String},
-  buisness: {type: Schema.Types.ObjectId, ref: 'Buisness'}
+  business: {type: Schema.Types.ObjectId, ref: 'Business'}
 });
 
 var Item = mongoose.model('Item', itemSchema);
