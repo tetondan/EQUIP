@@ -24,14 +24,15 @@ router.route('/items').post(function (req, res) {
       console.log(err);
       res.status(404);
     } else {
-      console.log(item);
-      console.log(item._id);
+      console.log('item object',item);
+      console.log('item id', item._id);
       Business.findById(req.body.businessId, function(err, business){
         if(err){console.log(err)};
         business.inventory.push(item._id);
-        console.log('saved')
+        business.save();
+        console.log('saved to business id')
+        res.status(200).send(business); 
       });
-      res.status(200).send(data.item); 
     }
 
   })
