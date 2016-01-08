@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Business = require('./business'); 
 
 var itemSchema = mongoose.Schema({
   item: {type: String, required: true},
@@ -7,9 +8,11 @@ var itemSchema = mongoose.Schema({
   amt: {type: Number, required: true},
   isIn: {type: Boolean, required: true},
   img: {type: String},
-  dates: [{type: Number}]
+  // dates: [{type: Number}]
+  businessId: {type: mongoose.Schema.Types.ObjectId, ref: 'Business'}
 });
 
 var Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
+
