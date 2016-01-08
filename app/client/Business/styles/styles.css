@@ -9,6 +9,7 @@
 .topContainer {
   width: 800px;
   height: 220px;
+  margin-bottom: 20px;
 }
 
 .nav {
@@ -24,7 +25,7 @@
 .viewContainer {
   width: 800px;
   height: 300px;
-  margin-top: 20px auto;
+  margin-top: 30px
 }
 .itemInput {
   margin-top: 20px;
@@ -32,10 +33,34 @@
   width: 800px;
   height: 200px;
 }
-.itemInput > form {
-
+.itemInput > button {
+  margin-bottom: 10px;
 }
 .itemInput > form > input {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-bottom: 10px;
+}
+.signIn {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 800px;
+  height: 200px;
+}
+.signIn > form {
+
+}
+.item {
+  text-align: center;
+  font-size: 30px;
+  border: solid;
+  width: 300px;
+  height: 80px;
+  border-width: 1px;
+  border-radius: 5px;
+}
+.signIn > form > input {
   display: flex;
   flex-direction: column;
   width: 200px;
