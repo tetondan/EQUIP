@@ -3,6 +3,7 @@ angular.module('auth.control', [])
 
   	$scope.signedIn = false;
 
+
   	$scope.signIn = function () {
 
   	}

@@ -13,41 +13,17 @@
   <div class='super' ng-controller='EquipControl'>
 
     <div class='topContainer'>
-          <img src='styles/60728.svg' style="width:250px;height:175px;">
-
-      <div class='signIn'>
-        <div class='button'>
-         <a ng-click='toggle()' href='#/signIn' ng-model='interesting'>Manage Inventory</a>
-         <!-- <a ui-sref='addInv' ng-model='interesting'>Dash</a> -->
-        </div>
-      </div>
-
-      <div ng-show='signedIn' class='nav'>
-        <div class='button'>
-         <a ng-click='toggle()' href='#/manage' ng-model='interesting'>Manage Inventory</a>
-         <!-- <a ui-sref='addInv' ng-model='interesting'>Dash</a> -->
-        </div>
-      </div>
-
-    </div>
-
-    <ul ng-show='!manageInUse' ng class='inventories' ng-repeat='inv in inventories.bobsBoots'>
-      <!-- render a new list item for each item in the inventory -->
-      <li class='inv' ng-click='addToInventory()' ><a href='#/addInv'> {{inv.name}}</a>
-      </li>
-
-    </ul>
+     <a href='#/main'><img src='styles/60728.svg' style="width:250px;height:175px;"></a>
 
     <div class='viewContainer'>
-      <div ng-show='manageInUse' ui-view></div>
+      <div ui-view></div>
     </div>
       
     </div>
-
-
-
-</div>
+    
+  </div>
   
+
 
   <script src='bower_components/underscore/underscore.js'></script>
   <script src='bower_components/angular/angular.js'></script>
@@ -56,9 +32,15 @@
   <script src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js'></script>
   <script src='bower_components/angular-bootstrap/ui-bootstrap.js'></script>
 
-  <script src='app.js'></script>
   <script src='appControl.js'></script>
+  <script src='auth/signIn.js'></script>
+  <script src='inventory/inventory.js'></script>
+  <script src='auth/signUp.js'></script>
+  <script src='main/main.js'></script>
   <script src='manage/manage.js'></script>
+  <script src='services/service.js'></script>
+
+  <script src='app.js'></script>
 
 
 	</body>
