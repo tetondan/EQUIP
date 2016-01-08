@@ -8,7 +8,7 @@ router.route('/businesses/signin').get(function (req, res) {
 });
 
 router.route('/businesses/signup').post(function (req, res) {
-  var data = req.body
+  var data = req.body;
   console.log(data);
   var business = new Business({
     username: data.username,
@@ -26,7 +26,7 @@ router.route('/businesses/signup').post(function (req, res) {
     } else {
       res.status(201).send(data.username); 
     }
-  })
+  });
 });
 
 router.route('/businesses/signedin').get(function (req, res) {
@@ -34,6 +34,19 @@ router.route('/businesses/signedin').get(function (req, res) {
 });
 
 router.route('/businesses').get(function (req, res) {
+  Business.find({}, function (err, all) {
+    if (err) {
+      console.log(err);
+    }
+    
+    var businessMap = {};
+    all.forEach(function (business) {
+      businessMap[business.name] = business;
+    });
+    res.status(200);
+    res.send(businessMap); 
+  });
+
 
 });
 
@@ -41,14 +54,49 @@ router.route('/businesses').get(function (req, res) {
 // });
 
 router.route('/businesses/:name').put(function (req, res) {
+  Business.findOne({name: req.params.name}, function (err, business) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } 
+    for (var prop in req.body) {
+      business[prop] = req.body[prop];
+    }
+    
+    business.save(function (err, newBusiness) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      }
+      res.status(200);
+      res.json({messages: "business updated here"});
+    });
+
+  });
 
 });
 
 router.route('/businesses/:name').get(function (req, res) {
+  Business.findOne({name: req.params.name}, function (err, business) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    res.status(200);
+    res.json(business);
+  });
 
 });
 
 router.route('/businesses/:name').delete(function (req, res) {
+  Business.remove({name: req.params.name}, function (err, business) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    res.status(200);
+    res.json({messages: 'business removed'});
+  });
 
 });
 
