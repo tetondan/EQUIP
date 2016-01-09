@@ -1,10 +1,15 @@
 
-<div class='signIn' >
+<div class='signUp' >
 	<form>
-		<input placeholder='Username'></input>
-		<input placeholder='Password'></input>
-		<input placeholder='Business Name'></input>
-		<input placeholder='Email'></input>
+		<input ng-model='username' placeholder='Username'></input>
+		<input ng-model='password' placeholder='Password'></input>
+		<input ng-model='busName' placeholder='Business Name'></input>
+		<input ng-model='email' placeholder='Email'></input>
+		<input ng-model='website' placeholder='Website'></input>
+		<input ng-model='address' placeholder='Address'></input>
+		<input ng-model='phone' placeholder='Phone'></input>
+		<!-- <input type='submit'></input> -->
+
 	</form>
-  <button><a href='#/main'>sign up!</a></button>
+  <button ng-click='signUp()'><a>sign up!</a></button>
 <div>

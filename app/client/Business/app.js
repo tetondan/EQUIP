@@ -1,11 +1,16 @@
 angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth.control', 'main.control', 'inventory.control'])
   .config(function ($stateProvider) {
   	$stateProvider
-	  	.state('signIn', {
-	  	  url: '/signIn',
-	  	  templateUrl : 'auth/signIn.html',
+	  	.state('signUp', {
+	  	  url: '/signUp',
+	  	  templateUrl : 'auth/signUp.html',
 	  	  controller: 'AuthControl'
 	  	})
+      .state('signIn', {
+        url: '/signIn',
+        templateUrl : 'auth/signIn.html',
+        controller: 'AuthControl'
+      })
       .state('main', {
         url: '/main',
         templateUrl : 'main/index.html',
