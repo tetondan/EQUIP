@@ -42,15 +42,19 @@
   width: 200px;
   margin-bottom: 10px;
 }
-.signIn {
+.signUp {
   margin-top: 20px;
   margin-left: 20px;
   width: 800px;
   height: 200px;
 }
-.signIn > form {
-
+.signUp > form > input {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-bottom: 10px;
 }
+
 .item {
   text-align: center;
   font-size: 30px;
