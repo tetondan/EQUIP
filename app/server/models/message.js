@@ -5,7 +5,8 @@ var messageSchema = mongoose.Schema({
   email: {type: String},
   phone: {type: String},
   dates: [{type: Number}],
-  items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
+  items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
+  businessId: {type: mongoose.Schema.Types.ObjectId, ref: 'Business'}
 });
 
 var Message = mongoose.model('Message', messageSchema);
