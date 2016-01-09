@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var Business = require('./business'); 
+var Item = require('./item'); 
 
 var messageSchema = mongoose.Schema({
   name: {type: String, required: true},
@@ -11,6 +13,6 @@ var messageSchema = mongoose.Schema({
 
 var Message = mongoose.model('Message', messageSchema);
 
-
+console.log('messages is being initiated')
 
 module.exports = Message;

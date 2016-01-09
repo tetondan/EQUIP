@@ -5,6 +5,13 @@ var express = require('express');
 var router = express.Router();
 
 ///app.get('/:code', linksController.navToLink);
+router.route('/messages').get(function (req, res) {
+  Message.find(function(err, msgs){
+    if(err){console.log(err)};
+    console.log(msgs)
+    res.status(200).send(msgs);
+  })
+});
 
 router.route('/messages').post(function (req, res) {
   var message = new Message({
@@ -12,7 +19,8 @@ router.route('/messages').post(function (req, res) {
     email: req.body.email,
     phone: req.body.phone,
     dates: req.body.dates,
-    items: req.body.items
+    items: req.body.items,
+    businessId: req.body.businessId
   })
   message.save(function(err){
     if(err){console.log(err)}
@@ -27,13 +35,15 @@ router.route('/messages').post(function (req, res) {
         })
       })
     })
-    res.status(200).send('received')
+    res.status(201).send(message)
   })
 });
 
-router.route('/messages/:busid').put(function (req, res) {
-  Message.find({businessId: req.params.busId}, function(err, messages){
-    res.status(200).send(messages);
+router.route('/messages/:busid').get(function (req, res) {
+  console.log(req.params.busid);
+  Message.find({businessId: req.params.busid}, function(err, messages){
+    if(err){console.log(err);}
+    else{res.status(200).send(messages);}
   })
 
 });
