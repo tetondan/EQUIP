@@ -1,30 +1,92 @@
-var item = require('../models/item');
+var Item = require('../models/item');
+var Business = require('../models/business');
 var express = require('express');
 var router = express.Router();
 
 ///app.get('/:code', linksController.navToLink);
-router.route('/item').get(function (req, res) {
+router.route('/items').get(function (req, res) {
+  Item.find(function(err, items){
+    if(err){console.log(err)};
+    res.status(200).send(items)
+  })
+});
+
+router.route('/items').post(function (req, res) {
+  var data = req.body
+  var item = new Item({
+    item: data.item,
+    price: data.price,
+    desc: data.desc,
+    amt: data.amt,
+    isIn: true,
+    img: data.img,
+    businessId: data.businessId
+    });
+  item.save(function (err) {
+    if (err){
+      console.log(err);
+      res.status(404);
+    } else {  
+      res.status(200).send(item._id); 
+    }
+
+  })
+});
+//does not work, do not use
+router.route('/items/checkout/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.update({'_id': itemId},{
+    isIn: false
+  }, function(err, num, raw) {
+   if(err){console.log(err)};
+    res.send(num);
+  })
+});
+
+router.route('/items/checkin/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.update({'_id': itemId},{
+    isIn: true
+  }, function(err, num, raw) {
+   if(err){console.log(err)};
+    res.send(num);
+  })
+});
+
+router.route('/items/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.findById(itemId, function(err, item){
+    res.status(200).send(item)
+  })
 
 });
 
-router.route('/item').post(function (req, res) {
+router.route('/items/:id').delete(function (req, res) {
+  var itemId = req.params.id;
+  Item.remove({'_id': itemId}, function(err, item){
+    res.status(200).send('removed')
+  })
 
 });
 
-router.route('/item/:id').put(function (req, res) {
-
-});
-
-router.route('/item/:id').get(function (req, res) {
-
-});
-
-router.route('/item/:id').delete(function (req, res) {
-
-});
+router.route('/items/getall/:busid').get(function (req, res){
+  var busId = req.params.busid
+  Item.find({businessId: busId}, function(err, items){
+    res.status(200).send(items)
+  })
+})
 
 module.exports = router;
 
+// new Item = {
+//   item: {type: String, required: true},
+//   price: {type: Number, required: true},
+//   desc: {type: String},
+//   amt: {type: Number, required: true},
+//   isIn: {type: Boolean, required: true},
+//   img: {type: String},
+//   dates: [{type: Number}]
+// }
 
 // app.post('/api/business/signin', businessController.signin);
 // app.post('/api/business/signup', businessController.signup);
