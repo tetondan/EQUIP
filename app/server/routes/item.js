@@ -5,7 +5,10 @@ var router = express.Router();
 
 ///app.get('/:code', linksController.navToLink);
 router.route('/items').get(function (req, res) {
-
+  Item.find(function(err, items){
+    if(err){console.log(err)};
+    res.status(200).send(items)
+  })
 });
 
 router.route('/items').post(function (req, res) {
@@ -17,37 +20,61 @@ router.route('/items').post(function (req, res) {
     amt: data.amt,
     isIn: true,
     img: data.img,
-    dates: [data.dates]
+    businessId: data.businessId
     });
   item.save(function (err) {
     if (err){
       console.log(err);
       res.status(404);
-    } else {
-      console.log(item);
-      console.log(item._id);
-      Business.findById(req.body.businessId, function(err, business){
-        if(err){console.log(err)};
-        business.inventory.push(item._id);
-        console.log('saved')
-      });
-      res.status(200).send(data.item); 
+    } else {  
+      res.status(200).send(item._id); 
     }
 
   })
 });
+//does not work, do not use
+router.route('/items/checkout/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.update({'_id': itemId},{
+    isIn: false
+  }, function(err, num, raw) {
+   if(err){console.log(err)};
+    res.send(num);
+  })
+});
 
-router.route('/items/:id').put(function (req, res) {
-
+router.route('/items/checkin/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.update({'_id': itemId},{
+    isIn: true
+  }, function(err, num, raw) {
+   if(err){console.log(err)};
+    res.send(num);
+  })
 });
 
 router.route('/items/:id').get(function (req, res) {
+  var itemId = req.params.id;
+  Item.findById(itemId, function(err, item){
+    res.status(200).send(item)
+  })
 
 });
 
 router.route('/items/:id').delete(function (req, res) {
+  var itemId = req.params.id;
+  Item.remove({'_id': itemId}, function(err, item){
+    res.status(200).send('removed')
+  })
 
 });
+
+router.route('/items/getall/:busid').get(function (req, res){
+  var busId = req.params.busid
+  Item.find({businessId: busId}, function(err, items){
+    res.status(200).send(items)
+  })
+})
 
 module.exports = router;
 
