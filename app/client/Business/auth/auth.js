@@ -1,5 +1,5 @@
 angular.module('auth.control', ['equip.services'])
-  .controller('AuthControl', function ($scope, Auth) {
+  .controller('AuthControl', function ($scope, $location, Auth) {
 
   	$scope.signedIn = false;
 
@@ -13,19 +13,25 @@ angular.module('auth.control', ['equip.services'])
         address: $scope.address,
         phone: $scope.phone
       }
-      // console.log('HERE WE GO')
-      console.log(data);
+
       Auth.signUp(data)
-        .then(function (resp) {
-          console.log(data);
-          console.log('good post', resp);
+        .then(function (data) {
+          $location.path('/signIn');
+          console.log('good post', data);
         })
         .catch(function (err) {
           console.log('error', err);
         })
 
   	}
+
+
+
     $scope.signIn = function () {
+
+      Auth.signIn($scope.username, $scope.password);
+
+
 
     }
 

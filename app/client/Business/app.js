@@ -6,6 +6,11 @@ angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth
 	  	  templateUrl : 'auth/signUp.html',
 	  	  controller: 'AuthControl'
 	  	})
+      .state('signIn', {
+        url: '/signIn',
+        templateUrl : 'auth/signIn.html',
+        controller: 'AuthControl'
+      })
       .state('main', {
         url: '/main',
         templateUrl : 'main/index.html',

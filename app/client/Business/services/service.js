@@ -1,26 +1,23 @@
 angular.module('equip.services', [])
+
+    //========== INVENTORY ADD AND RETRIEVE SERVICES ================
   .factory('Inventory', function ($http) {
-    
-  	//in here add our logic for retrieving inventory information from
-  	//the db
+
     var addItem = function (data) {
 
-      //remember to JSON stringify data on posts
       return $http({
         method: 'POST',
         url: '/items',
-        data: JSON.stringify(data)
+        data: data
       })
       .then(function (response) {
         console.log('good post', response);
         return response;
       })
-
     }
 
     var getItems = function (businessId) {
 
-      //get items from the database
       return $http({
         method: 'GET',
         url: '/items'
@@ -29,15 +26,15 @@ angular.module('equip.services', [])
         console.log('we have the datas', data);
         return data;
       })
-
     }
 
     return {
-      addTo: addTo,
+      addItem: addItems,
       getItems : getItems
     }
- 
   })
+
+  //================= AUTHORIZATION SERVICES =======================
   .factory('Auth', function ($http) {
 
     //remember to JSON stringify data
@@ -45,31 +42,36 @@ angular.module('equip.services', [])
       console.log(data);
       return $http({
         method: 'POST',
-        url: '/businesses/signup',
-        data: JSON.stringify(data)
+        url: '/api/businesses/signup',
+        data: data
       })
       .then(function (data) {
-        console.log('IN HERE')
-        console.log(data);
+        return data;
       })
-
-
   	}
 
     var signIn = function () {
       return $http({
         method: 'GET',
-        url: '/'
+        url: '/api/businesses/signIn'
       }).then(function (data) {
-        //use the data to validate us or invalidate us
+        //this will sign us in as a business- use the token returned here to sign the business in
         console.log(data);
       })
+    }
+
+    var isAuthorized = function () {
+      if (localStorage.EquipToken) {
+        return true;
+      }
+      return false;
     }
 
 
   	return {
   		signIn: signIn,
-  		signUp: signUp
+  		signUp: signUp,
+      isAuthorized: isAuthorized
   	}
 
   })
