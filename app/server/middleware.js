@@ -5,6 +5,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var business = require('./routes/business');
 var item = require('./routes/item');
+var message = require('./routes/message');
 
 // Middleware can be thought of as a magical pipe that water flows through.
 // Each drop of water starts at the top opening of the pipe. As it falls through,
@@ -36,4 +37,5 @@ module.exports = function (app, express) {
   app.use(session({secret: '1234567890QWERTY'}));
   app.use('/api', business);
   app.use('/api', item);
+  app.use('/api', message);
 };

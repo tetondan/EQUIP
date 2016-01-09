@@ -8,7 +8,7 @@ var itemSchema = mongoose.Schema({
   amt: {type: Number, required: true},
   isIn: {type: Boolean, required: true},
   img: {type: String},
-  // dates: [{type: Number}]
+  dates: [{type: Date}],
   businessId: {type: mongoose.Schema.Types.ObjectId, ref: 'Business'}
 });
 

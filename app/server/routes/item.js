@@ -20,7 +20,8 @@ router.route('/items').post(function (req, res) {
     amt: data.amt,
     isIn: true,
     img: data.img,
-    businessId: data.businessId
+    businessId: data.businessId,
+    dates: data.dates || []
     });
   item.save(function (err) {
     if (err){
@@ -57,6 +58,21 @@ router.route('/items/:id').get(function (req, res) {
   var itemId = req.params.id;
   Item.findById(itemId, function(err, item){
     res.status(200).send(item)
+  })
+
+});
+
+router.route('/items/:id').put(function (req, res) {
+  var newItem = req.body
+  Item.findById(req.params.id, function(err, item){
+    console.log(req.body)
+    for(var key in req.body){
+      item[key] = req.body[key];
+    }
+    item.save(function(err){
+      if(err){console.log(err)}
+      res.status(200).send(item)
+    })
   })
 
 });
@@ -101,4 +117,5 @@ module.exports = router;
 // send it through our custom error handler
 // app.use(helpers.errorLogger);
 // app.use(helpers.errorHandler);
+
 
