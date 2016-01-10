@@ -1,4 +1,4 @@
-angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth.control', 'main.control', 'inventory.control'])
+angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth.control', 'main.control', 'inventory.control', 'ngMaterial'])
   .config(function ($stateProvider) {
   	$stateProvider
 	  	.state('signUp', {
