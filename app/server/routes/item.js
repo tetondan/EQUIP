@@ -3,7 +3,7 @@ var Business = require('../models/business');
 var express = require('express');
 var router = express.Router();
 
-///app.get('/:code', linksController.navToLink);
+//gets ALL items in the database, not really good for anything but testing;
 router.route('/items').get(function (req, res) {
   Item.find(function(err, items){
     if(err){console.log(err)};
@@ -11,6 +11,7 @@ router.route('/items').get(function (req, res) {
   })
 });
 
+//creates a new item in the database, (item, price, amount, and business id are required);
 router.route('/items').post(function (req, res) {
   var data = req.body
   var item = new Item({
@@ -30,38 +31,18 @@ router.route('/items').post(function (req, res) {
     } else {  
       res.status(201).send(item._id); 
     }
-
-  })
-});
-//does not work, do not use
-router.route('/items/checkout/:id').get(function (req, res) {
-  var itemId = req.params.id;
-  Item.update({'_id': itemId},{
-    isIn: false
-  }, function(err, num, raw) {
-   if(err){console.log(err)};
-    res.send(num);
   })
 });
 
-router.route('/items/checkin/:id').get(function (req, res) {
-  var itemId = req.params.id;
-  Item.update({'_id': itemId},{
-    isIn: true
-  }, function(err, num, raw) {
-   if(err){console.log(err)};
-    res.send(num);
-  })
-});
-
+//gets an item by the item id;
 router.route('/items/:id').get(function (req, res) {
   var itemId = req.params.id;
   Item.findById(itemId, function(err, item){
     res.status(200).send(item)
   })
-
 });
 
+//allows the business owner to update items by the item id;
 router.route('/items/:id').put(function (req, res) {
   var newItem = req.body
   Item.findById(req.params.id, function(err, item){
@@ -74,17 +55,17 @@ router.route('/items/:id').put(function (req, res) {
       res.status(200).send(item)
     })
   })
-
 });
 
+//allows the business owner to delete items from inventory;
 router.route('/items/:id').delete(function (req, res) {
   var itemId = req.params.id;
   Item.remove({'_id': itemId}, function(err, item){
     res.status(200).send('removed')
   })
-
 });
 
+//gets all items by buisness id (to be used for customer view page);
 router.route('/items/getall/:busid').get(function (req, res){
   var busId = req.params.busid
   Item.find({businessId: busId}, function(err, items){
