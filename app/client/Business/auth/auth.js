@@ -1,4 +1,4 @@
-angular.module('auth.control', ['equip.services'])
+angular.module('auth.control', ['equip.services', 'ngMaterial'])
   .controller('AuthControl', function ($scope, $location, Auth) {
 
   	$scope.signedIn = false;
@@ -16,24 +16,24 @@ angular.module('auth.control', ['equip.services'])
 
       Auth.signUp(data)
         .then(function (data) {
-          $location.path('/signIn');
+          $location.path('/main');
           console.log('good post', data);
         })
         .catch(function (err) {
           console.log('error', err);
         })
-
   	}
-
-
 
     $scope.signIn = function () {
 
       Auth.signIn($scope.username, $scope.password);
 
-
-
     }
 
-
   })
+  .config(function($mdThemingProvider) {
+    // Configure a dark theme with primary foreground yellow
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
+  });
