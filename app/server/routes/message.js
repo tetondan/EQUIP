@@ -22,12 +22,14 @@ router.route('/messages').post(function (req, res) {
     items: req.body.items,
     businessId: req.body.businessId
   })
+  // message.save(function(err){res.send(200)})
   message.save(function(err){
     if(err){console.log(err)}
-    req.body.items.forEach(function(itemid){
-      Item.findOne({_id: itemid}, function(err, item){
-        item.dates = item.dates.concat(req.body.dates);
-        item.save(function(err){
+    req.body['items'].forEach(function(itemid){
+      Item.find({_id: itemid}, function(err, item){
+        item[0].dates = item[0].dates.concat(req.body['dates']);
+        console.log(item[0].dates)
+        item[0].save(function(err){
           if (err) {
             console.log(err);
             res.send(err);
@@ -40,19 +42,16 @@ router.route('/messages').post(function (req, res) {
 });
 
 router.route('/messages/:busid').get(function (req, res) {
-  console.log(req.params.busid);
-  Message.find({businessId: req.params.busid}, function(err, messages){
-    if(err){console.log(err);}
-    else{res.status(200).send(messages);}
-  })
-
+  Message.find({businessId: req.params.busid})
+    .populate({path: 'items'})  
+    .exec(function(err, messages){
+      if(err){console.log(err)}
+      res.status(200).send(messages);
+      console.log(messages)
+    })
 });
 
-router.route('/messages/:name').get(function (req, res) {
-
-});
-
-router.route('/messages/').delete(function (req, res) {
+router.route('/messages/:messageid').delete(function (req, res) {
   Message.remove({}, function(err){
     if(err){console.log(err)};
     res.send('deleted')
@@ -60,4 +59,3 @@ router.route('/messages/').delete(function (req, res) {
 });
 
 module.exports = router;
-
