@@ -3,25 +3,29 @@ var expect = chai.expect;
 var request = require('supertest');
 var app = require('../server.js');
 var db = require('../config_db.js');
+var mongoose = require('mongoose');
 var Business = require('../models/business.js');
 
 // Adds support for assertions on array elements
 // https://github.com/chaijs/Chai-Things#examples
 chai.use(require('chai-things'));
 
-describe('RESTful API', function () {
+var clearDB = function (done) {
+  mongoose.connection.collections['business'].remove(done);
+};
 
-  beforeEach(function () {
+describe('RESTful API', function () {
+  before(function (done) {
+    if (mongoose.connection.db) {
+      return done();
+    }
+    mongoose.connect('mongodb://localhost/fearlessgerbil', done);
+  });
+  beforeEach(function (done) {
     // Send a deep copy in so internal mutations do not affect our `testUsers` array above
     // Note: This copy technique works because we don't have any functions
-    db.clear();
-  });
 
-  describe('/api/businesses', function () {
-
-    describe('GET', function () {
-
-      it('responds with a 200 (OK) and object', function (done) {
+    clearDB(function () {
 
         var testBusinesses = [
           {
@@ -52,7 +56,6 @@ describe('RESTful API', function () {
             email: 'dan@dan.com'
           }
         ];
-
         var businessCopy = JSON.parse(JSON.stringify(testBusinesses));
         Business.create(businessCopy, function (err, businesses) {
           if (err) {
@@ -60,7 +63,15 @@ describe('RESTful API', function () {
             throw err;
           }
         });
+    });
+    return done();
+  });
 
+  describe('/api/businesses', function () {
+
+    describe('GET', function () {
+
+      it('responds with a 200 (OK) and object', function (done) {
         request(app)
           .get('/api/businesses')
           .set('Accept', 'application/json')
@@ -109,7 +120,7 @@ describe('RESTful API', function () {
               .set('Accept', 'application/json')
               .end(function (err, resp) {
                 expect(resp.body.email).to.equal('nn@nn.com');
-                done();
+               //done();
               });
             done();
           });
@@ -152,7 +163,7 @@ describe('RESTful API', function () {
               .set('Accept', 'application/json')
               .end(function (err, resp) {
                 expect(resp.body.name).to.equal('John_update');
-                done();
+                //done();
               });
             done();
           });
