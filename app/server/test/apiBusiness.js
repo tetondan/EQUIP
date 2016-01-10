@@ -120,7 +120,6 @@ describe('RESTful API', function () {
               .set('Accept', 'application/json')
               .end(function (err, resp) {
                 expect(resp.body.email).to.equal('nn@nn.com');
-               //done();
               });
             done();
           });
@@ -163,7 +162,6 @@ describe('RESTful API', function () {
               .set('Accept', 'application/json')
               .end(function (err, resp) {
                 expect(resp.body.name).to.equal('John_update');
-                //done();
               });
             done();
           });
@@ -197,7 +195,6 @@ describe('RESTful API', function () {
               .delete('/api/businesses/'+id)
               .end(function (err, resp) {
                 expect(resp.body.messages).to.equal('business removed');
-                //done();
               });
             done();
           });
