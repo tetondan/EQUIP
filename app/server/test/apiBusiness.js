@@ -197,7 +197,7 @@ describe('RESTful API', function () {
               .delete('/api/businesses/'+id)
               .end(function (err, resp) {
                 expect(resp.body.messages).to.equal('business removed');
-                done();
+                //done();
               });
             done();
           });
