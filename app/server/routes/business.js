@@ -23,9 +23,9 @@ router.route('/businesses/signup').post(function (req, res) {
     if (err){
       console.log(err);
       res.status(404);
-    } else {
-      res.status(201).send(data.username); 
     }
+  }).then(function (newUser) {
+    res.status(201).send({id: newUser._id});     
   });
 });
 
@@ -41,7 +41,7 @@ router.route('/businesses').get(function (req, res) {
     
     var businessMap = {};
     all.forEach(function (business) {
-      businessMap[business.name] = business;
+      businessMap[business._id] = business;
     });
     res.status(200);
     res.send(businessMap); 
@@ -53,8 +53,8 @@ router.route('/businesses').get(function (req, res) {
 // router.route('/business').post(function (req, res) {
 // });
 
-router.route('/businesses/:name').put(function (req, res) {
-  Business.findOne({name: req.params.name}, function (err, business) {
+router.route('/businesses/:id').put(function (req, res) {
+  Business.findOne({'_id': req.params.id}, function (err, business) {
     if (err) {
       console.log(err);
       res.send(err);
@@ -69,15 +69,15 @@ router.route('/businesses/:name').put(function (req, res) {
         res.send(err);
       }
       res.status(200);
-      res.json({messages: "business updated here"});
+      res.json(newBusiness);
     });
 
   });
 
 });
 
-router.route('/businesses/:name').get(function (req, res) {
-  Business.findOne({name: req.params.name}, function (err, business) {
+router.route('/businesses/:id').get(function (req, res) {
+  Business.findOne({'_id': req.params.id}, function (err, business) {
     if (err) {
       console.log(err);
       res.send(err);
@@ -88,8 +88,8 @@ router.route('/businesses/:name').get(function (req, res) {
 
 });
 
-router.route('/businesses/:name').delete(function (req, res) {
-  Business.remove({name: req.params.name}, function (err, business) {
+router.route('/businesses/:id').delete(function (req, res) {
+  Business.remove({'_id': req.params.id}, function (err, business) {
     if (err) {
       console.log(err);
       res.send(err);

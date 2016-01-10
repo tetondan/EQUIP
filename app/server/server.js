@@ -1,6 +1,5 @@
 var express = require('express');
 var db = require('./config_db');
-
 var app = express();
 
 // connect to mongo database named "fearlessgerbil"
@@ -14,3 +13,4 @@ var server = app.listen(app.get('port'), function () {
 	console.log('Express Server listening on port' + server.address().port);
 });
 
+module.exports = app;

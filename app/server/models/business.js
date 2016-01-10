@@ -10,7 +10,7 @@ var businessSchema = mongoose.Schema({
   email: {type: String},
   inventory: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}]
-});
+}, {collection: 'business'});
 
 var Business = mongoose.model('Business', businessSchema);
 

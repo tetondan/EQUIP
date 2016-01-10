@@ -28,7 +28,7 @@ router.route('/items').post(function (req, res) {
       console.log(err);
       res.status(404);
     } else {  
-      res.status(200).send(item._id); 
+      res.status(201).send(item._id); 
     }
 
   })
