@@ -9,7 +9,7 @@ var messageSchema = mongoose.Schema({
   dates: [{type: Date}],
   items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   businessId: {type: mongoose.Schema.Types.ObjectId, ref: 'Business'}
-});
+}, {collection: 'message'});
 
 var Message = mongoose.model('Message', messageSchema);
 

@@ -71,7 +71,7 @@ describe('RESTful API', function () {
 
     describe('GET', function () {
 
-      it('responds with a 200 (OK) and object', function (done) {
+      it('responds with a 200 (OK) and all businesses', function (done) {
         request(app)
           .get('/api/businesses')
           .set('Accept', 'application/json')
@@ -93,7 +93,7 @@ describe('RESTful API', function () {
   });
 
   describe('/api/businesses/signup', function () {
-    describe('POST', function () {
+    describe('POST AND GET', function () {
 
       var newBusiness = {
         username: 'nn',
