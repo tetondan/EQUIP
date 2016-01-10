@@ -1,15 +1,48 @@
 
-<div class='signUp' >
-	<form>
-		<input ng-model='username' placeholder='Username'></input>
-		<input ng-model='password' placeholder='Password'></input>
-		<input ng-model='busName' placeholder='Business Name'></input>
-		<input ng-model='email' placeholder='Email'></input>
-		<input ng-model='website' placeholder='Website'></input>
-		<input ng-model='address' placeholder='Address'></input>
-		<input ng-model='phone' placeholder='Phone'></input>
-		<!-- <input type='submit'></input> -->
-
-	</form>
-  <button ng-click='signUp()'><a>sign up!</a></button>
-<div>
+<div class='layout' layout="column" ng-cloak class="md-inline-form">
+  <md-content md-theme="docs-light" layout-gt-sm="row" layout-padding>
+    <div>
+      <form name="userForm">
+      <md-input-container>
+        <label>Username</label>
+        <input ng-model="username">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+    </div>
+  </md-input-containertent>
+  <md-content layout-padding>
+    <div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Company</label>
+            <input ng-model="busName">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="email" type='email'>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Website</label>
+            <input ng-model="website">
+          </md-input-container>
+        </div>
+        <md-input-container class="md-block">
+          <label>Address</label>
+          <input ng-model="address">
+        </md-input-container>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Phone</label>
+            <input ng-model="phone">
+          </md-input-container>
+        </div>
+        <md-button ng-click='signUp()' class="md-raised md-primary">Submit</md-button>
+      </form>
+    </div>
+  </md-content>
+</div>

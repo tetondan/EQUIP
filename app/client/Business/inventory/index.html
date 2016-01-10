@@ -1,8 +1,12 @@
-
-<ul class='inventories' ng-repeat='inv in inventories.bobsBoots'>
+<!-- template for viewing inventory -->
+<ul class='inventories' ng-repeat='item in inventory'>
 
   <div class='item' ng-click='addToInventory()' >
-    <a href='#/addInv'> {{inv.name}}</a>
+    <a>Item: {{item.item}}</a>
+    <a>Price: {{item.price}}</a>
+    <a>Quantity: {{item.amt}}</a>
+    <a>In Stock: {{item.isIn}}</a>
+    <a> {{item.img}}</a>
   </div>
 
 </ul>

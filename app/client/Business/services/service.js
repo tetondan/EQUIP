@@ -7,7 +7,7 @@ angular.module('equip.services', [])
 
       return $http({
         method: 'POST',
-        url: '/items',
+        url: '/api/items',
         data: data
       })
       .then(function (response) {
@@ -18,18 +18,21 @@ angular.module('equip.services', [])
 
     var getItems = function (businessId) {
 
+      businessId = businessId ? '/' + businessId : ''
+
       return $http({
         method: 'GET',
-        url: '/items'
+        url: '/api/items'
       })
       .then(function (data) {
+        console.log(businessId)
         console.log('we have the datas', data);
         return data;
       })
     }
 
     return {
-      addItem: addItems,
+      addItem: addItem,
       getItems : getItems
     }
   })
