@@ -4,34 +4,11 @@ var router = express.Router();
 var authController = require('../helpers/authController.js');
 var helpers = require('../helpers/helpers.js');
 
-///app.get('/:code', linksController.navToLink);
 router.route('/businesses/signin').post(authController.signin);
-
-// router.route('/businesses/signup').post(function (req, res) {
-//   var data = req.body;
-//   console.log(data);
-//   var business = new Business({
-//     username: data.username,
-//     password: data.password,
-//     name: data.name,
-//     address: data.address,
-//     phone: data.phone,
-//     website: data.website,
-//     email: data.email
-//     });
-//   business.save(function (err) {
-//     if (err){
-//       console.log(err);
-//       res.status(404);
-//     }
-//   }).then(function (newUser) {
-//     res.status(201).send({id: newUser._id});     
-//   });
-// });
 
 router.route('/businesses/signup').post(authController.signup);
 
-router.route('/businesses/signedin').get(authController.checkAuth);
+//router.route('/businesses/signedin').get(authController.checkAuth);
 
 router.route('/businesses').get(function (req, res) {
   Business.find({}, function (err, all) {
@@ -49,9 +26,6 @@ router.route('/businesses').get(function (req, res) {
 
 
 });
-
-// router.route('/business').post(function (req, res) {
-// });
 
 router.route('/businesses/:id').put(function (req, res) {
   Business.findOne({'_id': req.params.id}, function (err, business) {
@@ -101,19 +75,3 @@ router.route('/businesses/:id').delete(function (req, res) {
 });
 
 module.exports = router;
-
-
-// app.post('/api/business/signin', businessController.signin);
-// app.post('/api/business/signup', businessController.signup);
-// app.get('/api/business/signedin', businessController.checkAuth);
-
-// authentication middleware used to decode token and made available on the request
-// app.use('/api/links', helpers.decode);
-// app.get('/api/inventory/', inventoryController.allInventory);
-// app.post('/api/inventory/', inventoryController.newInventory);
-
-// If a request is sent somewhere other than the routes above,
-// send it through our custom error handler
-// app.use(helpers.errorLogger);
-// app.use(helpers.errorHandler);
-

@@ -18,10 +18,10 @@ module.exports = {
           return business.comparePasswords(password)
             .then(function (foundBusiness) {
               if (foundBusiness) {
-                var token = jwt.encode(business, 'secret');
+                //var token = jwt.encode(business, 'secret');
                 console.log(".............");
                 console.log(business);
-                res.send({id: business._id, token: token});
+                res.send({id: business._id});
                 //res.json({token: token});
               } else {
                 return next(new Error('No business'));
@@ -63,8 +63,8 @@ module.exports = {
       })
       .then(function (business) {
         // create token to send back for auth
-        var token = jwt.encode(business, 'secret');
-        res.send({id: business._id, token: token});
+        //var token = jwt.encode(business, 'secret');
+        res.send(business);
         //res.json({token: token});
       })
       .fail(function (error) {

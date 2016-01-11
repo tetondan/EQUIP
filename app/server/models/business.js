@@ -12,8 +12,6 @@ var businessSchema = mongoose.Schema({
   phone: {type: String},
   website: {type: String},
   email: {type: String},
-  inventory: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
-  messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}],
   salt: String
 }, {collection: 'business'});
 
@@ -64,3 +62,5 @@ var Business = mongoose.model('Business', businessSchema);
 
 
 module.exports = Business;
+
+
