@@ -31,7 +31,7 @@ router.route('/items').post(function (req, res) {
       console.log(err);
       res.status(404);
     } else {
-      res.status(201).send(item._id);
+      res.status(201).send({id: item._id});
     }
   });
 });
@@ -67,7 +67,7 @@ router.route('/items/:id').put(function (req, res) {
 router.route('/items/:id').delete(function (req, res) {
   var itemId = req.params.id;
   Item.remove({'_id': itemId}, function(err, item){
-    res.status(200).send('removed');
+    res.status(200).send({messages: 'item removed'});
   });
 });
 

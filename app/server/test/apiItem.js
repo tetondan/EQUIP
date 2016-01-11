@@ -5,6 +5,7 @@ var app = require('../server.js');
 var db = require('../config_db.js');
 var mongoose = require('mongoose');
 var Item = require('../models/item.js');
+var Business = require('../models/business.js');
 
 // Adds support for assertions on array elements
 // https://github.com/chaijs/Chai-Things#examples
@@ -12,6 +13,7 @@ chai.use(require('chai-things'));
 
 var clearDB = function (done) {
   mongoose.connection.collections['item'].remove(done);
+  //mongoose.connection.collections['business'].remove(done);
 };
 
 describe('RESTful API', function () {
@@ -22,20 +24,47 @@ describe('RESTful API', function () {
     mongoose.connect('mongodb://localhost/fearlessgerbil', done);
   });
   beforeEach(function (done) {
-    // Send a deep copy in so internal mutations do not affect our `testUsers` array above
-    // Note: This copy technique works because we don't have any functions
 
     clearDB(function () {
+      mongoose.connection.collections['business'].remove();
+        
+      var newBusiness = {
+        username: 'zz',
+        password: 'zz',
+        name: 'zz',
+        address: 'co',
+        phone: '7',
+        website: 'www.zz.com',
+        email: 'zz@zz.com'
+      };
+
+      var businessCopy = JSON.parse(JSON.stringify(newBusiness));
+      Business.create(businessCopy, function (err, business) {
+        if (err) {
+          console.log(err, "Before Each");
+          throw err;
+        }
 
         var testItems = [
           {
-
+            item: 'boots',
+            price: 10,
+            desc: 'ski',
+            amt: 1,
+            isIn: true,
+            img: 'img1',
+            businessId: business._id,
+            dates: []
           },
           {
-
-          },
-          {
-
+            item: 'football',
+            price: 9,
+            desc: 'sports',
+            amt: 2,
+            isIn: true,
+            img: 'img2',
+            businessId: business._id,
+            dates: []
           }
         ];
         var itemCopy = JSON.parse(JSON.stringify(testItems));
@@ -45,6 +74,7 @@ describe('RESTful API', function () {
             throw err;
           }
         });
+      });
     });
     return done();
   });
@@ -54,15 +84,59 @@ describe('RESTful API', function () {
     describe('GET', function () {
 
       it('responds with a 200 (OK) and all items', function (done) {
-
+        request(app)
+          .get('/api/items')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end(function (err, resp) {
+            expect(resp.body.length).to.equal(2);
+            done();
+          });
       });
 
     });
 
-    describe('POST', function () {
+    describe('POST AND GET', function () {
 
       it('responds with a 201 (Created) when a valid item is sent', function (done) {
+        Business.find({username: 'zz'}, function(err, business) {
+          if (err) {
+            console.log(err);
+            throw err;
+          }
 
+          var newItem = {
+            item: 'helmets',
+            price: 20,
+            desc: 'ski',
+            amt: 3,
+            //isIn: true,
+            img: 'img3',
+            businessId: business._id,
+            dates: []
+          };
+
+          var id = null;
+
+          request(app)
+            .post('/api/items')
+            .send(newItem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(201)
+            .end(function (err, resp) {
+              id = resp.body.id;
+              request(app)
+                .get('/api/items/'+id)
+                .set('Accept', 'application/json')
+                .end(function (err, resp) {
+                  expect(resp.body.item).to.equal('helmets');
+                });
+            });
+
+          done(); 
+        });
       });
 
     });
@@ -73,7 +147,44 @@ describe('RESTful API', function () {
     describe('PUT', function () {
       
       it('responds with a 200 and updated item when item with the matching `id` is updated', function (done) {
-        
+        Business.find({username: 'zz'}, function(err, business) {
+          if (err) {
+            console.log(err);
+            throw err;
+          }
+
+          var newItem = {
+            item: 'cups',
+            price: 5,
+            desc: 'drink',
+            amt: 2,
+            //isIn: true,
+            img: 'img4',
+            businessId: business._id,
+            dates: []
+          };
+
+          var id = null;
+
+          request(app)
+            .post('/api/items')
+            .send(newItem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(201)
+            .end(function (err, resp) {
+              id = resp.body.id;
+              request(app)
+                .put('/api/items/'+id)
+                .send({amt: 4})
+                .set('Accept', 'application/json')
+                .end(function (err, resp) {
+                  expect(resp.body.amt).to.equal(4);
+                });
+            });
+
+          done();
+        });
       });
 
     });
@@ -81,31 +192,40 @@ describe('RESTful API', function () {
     describe('DELETE', function () {
 
       it('responds with a 200 and "removed" string when item with the matching `id` is deleted', function (done) {
+        Business.find({username: 'zz'}, function(err, business) {
+          if (err) {
+            console.log(err);
+            throw err;
+          }
 
-      });
+          var newItem = {
+            item: 'earphones',
+            price: 50,
+            desc: 'music',
+            amt: 6,
+            //isIn: true,
+            img: 'img5',
+            businessId: business._id,
+            dates: []
+          };
 
-    });
+          var id = null;
 
-  });
+          request(app)
+            .post('/api/items')
+            .send(newItem)
+            .set('Accept', 'application/json')
+            .end(function (err, resp) {
+              id = resp.body.id;
+              request(app)
+                .delete('/api/items/'+id)
+                .end(function (err, resp) {
+                  expect(resp.body.messages).to.equal('item removed');
+                });
+            });
 
-  describe('/api/items/checkin/:id', function () {
-
-    describe('GET', function () {
-
-      it('responds with a 200 (OK)', function (done) {
-
-      });
-
-    });
-
-  }); 
-
-  describe('/api/items/checkout/:id', function () {
-
-    describe('GET', function () {
-
-      it('responds with a 200 (OK)', function (done) {
-
+          done();
+        });
       });
 
     });
@@ -115,13 +235,67 @@ describe('RESTful API', function () {
   describe('/api/items/getall/:busid', function () {
 
     describe('GET', function () {
-
       it('responds with a 200 (OK) and all the items with busid', function (done) {
+        Business.find({username: 'zz'}, function(err, business) {
+          if (err) {
+            console.log(err);
+            throw err;
+          }
 
+          var newItem = {
+            item: 'coats',
+            price: 100,
+            desc: 'ski',
+            amt: 8,
+            //isIn: true,
+            img: 'img6',
+            businessId: business._id,
+            dates: []
+          };
+
+          request(app)
+            .post('/api/items')
+            .send(newItem)
+            .set('Accept', 'application/json')
+            .end(function (err, resp) {
+              request(app)
+                .get('/api/items/getall/'+business._id)
+                .end(function (err, resp) {
+                  expect(resp.body.length).to.equal(6);
+                });
+            });
+
+          done();
+        });
       });
 
     });
 
-  });   
+  });  
+
+  // describe('/api/items/checkin/:id', function () {
+
+  //   describe('GET', function () {
+
+  //     it('responds with a 200 (OK)', function (done) {
+
+  //     });
+
+  //   });
+
+  // }); 
+
+  // describe('/api/items/checkout/:id', function () {
+
+  //   describe('GET', function () {
+
+  //     it('responds with a 200 (OK)', function (done) {
+
+  //     });
+
+  //   });
+
+  // });
+
 
 });
