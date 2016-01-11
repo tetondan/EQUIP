@@ -3,21 +3,29 @@
 <div ng-cloak>
   <md-content class="md-padding" layout="row" layout-wrap layout-align="center center" layout-xs="row" >
 
-    <div flex="100" flex-sm="100" flex-xs="100" layout="column">
+    <div flex="80" flex-sm="100" flex-xs="100" layout="column">
       <md-card ng-repeat='item in inventory'>
         <md-card-title>
           <md-card-title-text>
             <span ng-show='false' class="md-subhead">{{$index}}</span>
             <span class="md-headline">{{ item.item }}</span>
-            <span class="md-subhead"> Quantity: {{ item.amt }}</span>
-            <span class="md-subhead">$$ {{item.price }}</span>
-
+            <span>$$ {{item.price }}</span>
+            <div class='description'>
+              {{item.desc}}
+            </div>
           </md-card-title-text>
-          <img style='width:80px; height:80px' src='{{item.img}}'/>
           <md-card-title-media>
-            <div class="md-media-sm card-media"></div>
+            <div class="md-media-sm card-media">
+              <img style='width:90px; height:80px' src='{{item.img}}'/>
+            </div>
           </md-card-title-media>
         </md-card-title>
+
+        <md-card-content layout="column" layout-align="start end">
+          <span> Quantity: {{ item.amt }}</span>
+        </md-card-content>
+
+
         <md-card-actions layout="row" layout-align="end center">
           <md-button ng-click='remove(item._id, $index)'>Remove</md-button>
         </md-card-actions>
