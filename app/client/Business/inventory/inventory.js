@@ -1,4 +1,4 @@
-angular.module('inventory.control', ['equip.services'])
+angular.module('inventory.control', ['equip.services', 'ngMaterial'])
   .controller('InventoryControl', function ($scope, Inventory) {
 
   	Inventory.getItems()
@@ -6,5 +6,6 @@ angular.module('inventory.control', ['equip.services'])
         $scope.inventory = data.data;
         console.log($scope.inventory);
       })
+
     
   })

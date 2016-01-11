@@ -1,12 +1,10 @@
 /*some stylings for ui-bootstrap*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-
 /*stylings for top level template*/
 .container {
   width: 100%;
-  height: 900px;
-
+  height: 500px;
 }
 
 .layout {
@@ -19,51 +17,52 @@
 }
 .viewContainer {
   width: 100%;
-  height: 300px;
-  margin-top: 30px
+  height: 500px;
+  margin-top: 30px;
 }
 .itemInput {
   margin-top: 20px;
   margin-left: 20px;
   width: 800px;
-  height: 200px;
+  height: 100%;
 }
-.itemInput > button {
-  margin-bottom: 10px;
-}
-.itemInput > form > input {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin-bottom: 10px;
-}
+
+
+
 .signUp {
   margin-top: 20px;
   margin-left: 20px;
   width: 800px;
   height: 200px;
 }
-.signUp > form > input {
+/*.signUp > form > input {
   display: flex;
   flex-direction: column;
   width: 200px;
   margin-bottom: 10px;
 }
 
-.item {
-  text-align: center;
-  font-size: 15px;
-  border: solid;
-  width: 300px;
-  height: 80px;
-  border-width: 1px;
-  border-radius: 5px;
-}
 .signIn > form > input {
   display: flex;
   flex-direction: column;
   width: 200px;
   margin-bottom: 10px;
+}*/
+
+.inventory {
+  width: 800px;
+  height: 400px;
+  overflow: scroll;
+}
+.messages {
+  width: 400px;
+  height: 400px;
+  z-index: 1;
+}
+.mainView {
+  width: 100%;
+  height: 400px;
+
 }
 .sidebar {
   float: left;
@@ -80,4 +79,14 @@ textarea {
 	height: 300px;
 
 }
+
+
+
+
+
+
+
+
+
+
 
