@@ -53,7 +53,7 @@ router.route('/messages/:busid').get(function (req, res) {
 });
 //allows the removal of messages from the db, after the business is done reading/using them.
 router.route('/messages/:messageid').delete(function (req, res) {
-  Message.remove({'_id': req.params.messageid}, function(err){
+  Message.remove({_id: req.params.messageid}, function(err){
     if(err){console.log(err)};
     res.send({messages: 'deleted'});
   })
