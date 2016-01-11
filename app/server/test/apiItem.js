@@ -12,74 +12,75 @@ var Business = require('../models/business.js');
 chai.use(require('chai-things'));
 
 var clearDB = function (done) {
-  mongoose.connection.collections['item'].remove(done);
-  //mongoose.connection.collections['business'].remove(done);
+  mongoose.connection.collections['business'].remove(done);
 };
 
-describe('RESTful API', function () {
+
+describe('RESTful API------------------------', function () {
   before(function (done) {
     if (mongoose.connection.db) {
       return done();
     }
     mongoose.connect('mongodb://localhost/fearlessgerbil', done);
   });
-  beforeEach(function (done) {
-
-    clearDB(function () {
-      mongoose.connection.collections['business'].remove();
-        
-      var newBusiness = {
-        username: 'zz',
-        password: 'zz',
-        name: 'zz',
-        address: 'co',
-        phone: '7',
-        website: 'www.zz.com',
-        email: 'zz@zz.com'
-      };
-
-      var businessCopy = JSON.parse(JSON.stringify(newBusiness));
-      Business.create(businessCopy, function (err, business) {
-        if (err) {
-          //console.log(err, "Before Each");
-          //throw err;
-        }
-
-        var testItems = [
-          {
-            item: 'boots',
-            price: 10,
-            desc: 'ski',
-            amt: 1,
-            img: 'img1',
-            businessId: business._id,
-            dates: []
-          },
-          {
-            item: 'football',
-            price: 9,
-            desc: 'sports',
-            amt: 2,
-            img: 'img2',
-            businessId: business._id,
-            dates: []
-          }
-        ];
-        var itemCopy = JSON.parse(JSON.stringify(testItems));
-        Item.create(itemCopy, function (err, items) {
-          if (err) {
-            //console.log(err, "Before Each");
-            //throw err;
-          }
-        });
-      });
-    });
-    return done();
-  });
-
-  
 
   describe('/api/items', function () {
+
+    before(function (done) {
+
+      clearDB(function () {
+          
+        mongoose.connection.collections['item'].remove();
+
+        var newBusiness = {
+          username: 'zz',
+          password: 'zz',
+          name: 'zz',
+          address: 'co',
+          phone: '7',
+          website: 'www.zz.com',
+          email: 'zz@zz.com'
+        };
+
+        var businessCopy = JSON.parse(JSON.stringify(newBusiness));
+        Business.create(businessCopy, function (err, business) {
+          if (err) {
+            console.log(err, "Before Each");
+            throw err;
+          }
+
+          var testItems = [
+            {
+              item: 'boots',
+              price: 10,
+              desc: 'ski',
+              amt: 1,
+              img: 'img1',
+              businessId: business._id,
+              dates: []
+            },
+            {
+              item: 'football',
+              price: 9,
+              desc: 'sports',
+              amt: 2,
+              img: 'img2',
+              businessId: business._id,
+              dates: []
+            }
+          ];
+          var itemCopy = JSON.parse(JSON.stringify(testItems));
+          Item.create(itemCopy, function (err, items) {
+            if (err) {
+              console.log(err, "Before Each");
+              throw err;
+            }
+          });
+        });
+      });
+      return done();
+    });
+
 
     describe('GET', function () {
 
@@ -102,8 +103,8 @@ describe('RESTful API', function () {
       it('responds with a 201 (Created) when a valid item is sent', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            //console.log(err);
-            //throw err;
+            console.log(err);
+            throw err;
           }
 
           var newItem = {
@@ -111,9 +112,8 @@ describe('RESTful API', function () {
             price: 20,
             desc: 'ski',
             amt: 3,
-            //isIn: true,
             img: 'img3',
-            businessId: business._id,
+            businessId: business[0]._id,
             dates: []
           };
 
@@ -149,8 +149,8 @@ describe('RESTful API', function () {
       it('responds with a 200 and updated item when item with the matching `id` is updated', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            //console.log(err);
-            //throw err;
+            console.log(err);
+            throw err;
           }
 
           var newItem = {
@@ -158,9 +158,8 @@ describe('RESTful API', function () {
             price: 5,
             desc: 'drink',
             amt: 2,
-            //isIn: true,
             img: 'img4',
-            businessId: business._id,
+            businessId: business[0]._id,
             dates: []
           };
 
@@ -194,8 +193,8 @@ describe('RESTful API', function () {
       it('responds with a 200 and "removed" string when item with the matching `id` is deleted', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            //console.log(err);
-            //throw err;
+            console.log(err);
+            throw err;
           }
 
           var newItem = {
@@ -203,9 +202,8 @@ describe('RESTful API', function () {
             price: 50,
             desc: 'music',
             amt: 6,
-            //isIn: true,
             img: 'img5',
-            businessId: business._id,
+            businessId: business[0]._id,
             dates: []
           };
 
@@ -238,8 +236,8 @@ describe('RESTful API', function () {
       it('responds with a 200 (OK) and all the items with busid', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            //console.log(err);
-            //throw err;
+            console.log(err);
+            throw err;
           }
 
           var newItem = {
@@ -247,9 +245,8 @@ describe('RESTful API', function () {
             price: 100,
             desc: 'ski',
             amt: 8,
-            //isIn: true,
             img: 'img6',
-            businessId: business._id,
+            businessId: business[0]._id,
             dates: []
           };
 
@@ -259,9 +256,9 @@ describe('RESTful API', function () {
             .set('Accept', 'application/json')
             .end(function (err, resp) {
               request(app)
-                .get('/api/items/getall/'+business._id)
+                .get('/api/items/getall/'+business[0]._id)
                 .end(function (err, resp) {
-                  expect(resp.body.length).to.equal(6);
+                  expect(resp.body.length).to.equal(5);
                 });
             });
 
@@ -272,30 +269,6 @@ describe('RESTful API', function () {
     });
 
   });  
-
-  // describe('/api/items/checkin/:id', function () {
-
-  //   describe('GET', function () {
-
-  //     it('responds with a 200 (OK)', function (done) {
-
-  //     });
-
-  //   });
-
-  // }); 
-
-  // describe('/api/items/checkout/:id', function () {
-
-  //   describe('GET', function () {
-
-  //     it('responds with a 200 (OK)', function (done) {
-
-  //     });
-
-  //   });
-
-  // });
 
 
 });
