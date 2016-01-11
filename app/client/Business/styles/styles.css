@@ -1,29 +1,19 @@
 /*some stylings for ui-bootstrap*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-.super {
+
+/*stylings for top level template*/
+.container {
   width: 100%;
   height: 900px;
 
 }
-.ng-scope {
-  width: 100%;
-}
-.topContainer {
-  width: 100%;
-  height: 220px;
-  margin-bottom: 0 auto;
-}
+
 .layout {
   width: 500px;
   /*margin: 0 auto;*/
 }
-.nav {
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 800px;
-  height: 50px;
-}
+
 .button {
   display: inline-block;
 }
@@ -74,6 +64,15 @@
   flex-direction: column;
   width: 200px;
   margin-bottom: 10px;
+}
+.sidebar {
+  float: left;
+  width: 30%;
+  height: 100%;
+}
+.inventory {
+  width: 800px;
+  height: 100%;
 }
 
 textarea {
