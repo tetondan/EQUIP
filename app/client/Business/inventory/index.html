@@ -1,23 +1,25 @@
 <!-- template for viewing inventory -->
 
-
-
-<!-- change these to material ui cards -->
 <div ng-cloak>
-  <md-content>
-    <md-list ng-repeat="item in inventory">
-    <md-divider ></md-divider>
-      <md-list-item class="md-3-line" 
+  <md-content class="md-padding" layout="row" layout-wrap layout-align="center center" layout-xs="row" >
 
-        <div class="md-list-item-text" layout="column">
-          <h3>{{ item.item }}</h3>
-          <h4>{{ item.price }}</h4>
-          <p>{{ item.amt }}</p>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-
- 
-    </md-list>
+    <div flex="100" flex-sm="100" flex-xs="100" layout="column">
+      <md-card ng-repeat='item in inventory'>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ item.item }}</span>
+            <span class="md-subhead"> Quantity: {{ item.amt }}</span>
+            <span class="md-subhead">$$ {{item.price }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Remove</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
   </md-content>
 </div>
+
