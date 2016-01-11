@@ -30,3 +30,16 @@
     /api/items/getall/:businessid - GET - will return all items with refernce to 
                                           its unique business id
 
+  ## /messages  :
+
+    /api/messages - GET - gets ALL messages from database
+                  - POST - posts a new message to the database, on success returns 
+                           the entire message object
+
+    /api/messages/:businessid - GET - returns all messages for the business matching
+                                      the unique business id supplied, messages 
+                                      include item objects contained in message
+
+    /api/messages/:messageid - DELETE - deletes individual message based on unique
+                                        message id, return mesasge "message deleted"                                  
+
