@@ -114,7 +114,7 @@ describe('RESTful API', function () {
           .expect('Content-Type', /json/)
           .expect(201)
           .end(function (err, resp) {
-            id = resp.body.id;
+            id = resp.body._id;
             request(app)
               .get('/api/businesses/'+id)
               .set('Accept', 'application/json')
@@ -155,7 +155,7 @@ describe('RESTful API', function () {
           .expect('Content-Type', /json/)
           .expect(201)
           .end(function (err, resp) {
-            id = resp.body.id;
+            id = resp.body._id;
             request(app)
               .put('/api/businesses/'+id)
               .send({ name: 'John_update' })
@@ -190,7 +190,7 @@ describe('RESTful API', function () {
           .send(newBusiness)
           .set('Accept', 'application/json')
           .end(function (err, resp) {
-            id = resp.body.id;
+            id = resp.body._id;
             request(app)
               .delete('/api/businesses/'+id)
               .end(function (err, resp) {
