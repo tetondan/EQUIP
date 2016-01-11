@@ -1,7 +1,11 @@
 angular.module('equip.services', [])
 
     //========== INVENTORY ADD AND RETRIEVE SERVICES ================
-  .factory('Inventory', function ($http) {
+  .factory('Inventory', function ($http, $state) {
+
+    var update = function () {
+      $state.transitionTo('main.inventory');
+    }
 
     var addItem = function (data) {
 
@@ -31,24 +35,38 @@ angular.module('equip.services', [])
       })
     }
 
+    var removeItem = function (id) {
+      return $http({
+        method: 'DELETE',
+        url: '/api/items/' + id 
+      }).then(function (data) {
+        //this will sign us in as a business- use the token returned here to sign the business in
+        console.log(data);
+      })
+    }
+
     return {
+      update: update,
+      removeItem: removeItem,
       addItem: addItem,
       getItems : getItems
     }
   })
+
 
   //================= AUTHORIZATION SERVICES =======================
   .factory('Auth', function ($http) {
 
     //remember to JSON stringify data
   	var signUp = function (data) {
-      console.log(data);
       return $http({
         method: 'POST',
         url: '/api/businesses/signup',
         data: data
       })
       .then(function (data) {
+        console.log('THIS IS THE BUS ID', data)
+        window.localStorage.setItem('EQUIP_TOKEN', data.data._id)
         return data;
       })
   	}
@@ -63,8 +81,9 @@ angular.module('equip.services', [])
       })
     }
 
+
     var isAuthorized = function () {
-      if (localStorage.EquipToken) {
+      if (localStorage.EQUIP_TOKEN) {
         return true;
       }
       return false;

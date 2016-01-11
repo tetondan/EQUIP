@@ -7,16 +7,19 @@
       <md-card ng-repeat='item in inventory'>
         <md-card-title>
           <md-card-title-text>
+            <span ng-show='false' class="md-subhead">{{$index}}</span>
             <span class="md-headline">{{ item.item }}</span>
             <span class="md-subhead"> Quantity: {{ item.amt }}</span>
             <span class="md-subhead">$$ {{item.price }}</span>
+
           </md-card-title-text>
+          <img style='width:80px; height:80px' src='{{item.img}}'/>
           <md-card-title-media>
             <div class="md-media-sm card-media"></div>
           </md-card-title-media>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Remove</md-button>
+          <md-button ng-click='remove(item._id, $index)'>Remove</md-button>
         </md-card-actions>
       </md-card>
     </div>

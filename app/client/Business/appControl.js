@@ -10,11 +10,10 @@ angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial',
       $location.path('/main')
     }
 
+
     $scope.toggleLeft = buildDelayedToggler('left');
 
-    $scope.isOpenRight = function(){
-      return $mdSidenav('right').isOpen();
-    };
+    //=======Below are functions used in the add item side menu=====
     /**
      * Supplies a function that will continue to operate until the
      * time is up.
