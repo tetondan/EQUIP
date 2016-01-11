@@ -1,27 +1,30 @@
-var User = require('./userModel.js');
+var Business = require('../models/business.js');
     Q = require('q');
     jwt = require('jwt-simple');
 
-var findUser = Q.nbind(User.findOne, User);
-var createUser = Q.nbind(User.create, User);
+var findBusiness = Q.nbind(Business.findOne, Business);
+var createBusiness = Q.nbind(Business.create, Business);
 
 module.exports = {
   signin: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
-    findUser({username: username})
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
+    findBusiness({username: username})
+      .then(function (business) {
+        if (!business) {
+          next(new Error('Business does not exist'));
         } else {
-          return user.comparePasswords(password)
-            .then(function (foundUser) {
-              if (foundUser) {
-                var token = jwt.encode(user, 'secret');
-                res.json({token: token});
+          return business.comparePasswords(password)
+            .then(function (foundBusiness) {
+              if (foundBusiness) {
+                var token = jwt.encode(business, 'secret');
+                console.log(".............");
+                console.log(business);
+                res.send({id: business._id, token: token});
+                //res.json({token: token});
               } else {
-                return next(new Error('No user'));
+                return next(new Error('No business'));
               }
             });
         }
@@ -34,24 +37,35 @@ module.exports = {
   signup: function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
+    var name = req.body.name;
+    var address = req.body.address;
+    var phone = req.body.phone;
+    var website = req.body.website;
+    var email = req.body.email;
 
     // check to see if user already exists
-    findUser({username: username})
-      .then(function (user) {
-        if (user) {
-          next(new Error('User already exist!'));
+    findBusiness({username: username})
+      .then(function (business) {
+        if (business) {
+          next(new Error('Business already exist!'));
         } else {
           // make a new user if not one
-          return createUser({
+          return createBusiness({
             username: username,
-            password: password
+            password: password,
+            name: name,
+            address: address,
+            phone: phone,
+            website: website,
+            email: email
           });
         }
       })
-      .then(function (user) {
+      .then(function (business) {
         // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        var token = jwt.encode(business, 'secret');
+        res.send({id: business._id, token: token});
+        //res.json({token: token});
       })
       .fail(function (error) {
         next(error);
@@ -67,10 +81,10 @@ module.exports = {
     if (!token) {
       next(new Error('No token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      findUser({username: user.username})
-        .then(function (foundUser) {
-          if (foundUser) {
+      var business = jwt.decode(token, 'secret');
+      findBusiness({username: business.username})
+        .then(function (foundBusiness) {
+          if (foundBusiness) {
             res.send(200);
           } else {
             res.send(401);

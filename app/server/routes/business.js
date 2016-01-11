@@ -1,37 +1,37 @@
 var Business = require('../models/business');
 var express = require('express');
 var router = express.Router();
+var authController = require('../helpers/authController.js');
+var helpers = require('../helpers/helpers.js');
 
 ///app.get('/:code', linksController.navToLink);
-router.route('/businesses/signin').get(function (req, res) {
+router.route('/businesses/signin').post(authController.signin);
 
-});
+// router.route('/businesses/signup').post(function (req, res) {
+//   var data = req.body;
+//   console.log(data);
+//   var business = new Business({
+//     username: data.username,
+//     password: data.password,
+//     name: data.name,
+//     address: data.address,
+//     phone: data.phone,
+//     website: data.website,
+//     email: data.email
+//     });
+//   business.save(function (err) {
+//     if (err){
+//       console.log(err);
+//       res.status(404);
+//     }
+//   }).then(function (newUser) {
+//     res.status(201).send({id: newUser._id});     
+//   });
+// });
 
-router.route('/businesses/signup').post(function (req, res) {
-  var data = req.body;
-  console.log(data);
-  var business = new Business({
-    username: data.username,
-    password: data.password,
-    name: data.name,
-    address: data.address,
-    phone: data.phone,
-    website: data.website,
-    email: data.email
-    });
-  business.save(function (err) {
-    if (err){
-      console.log(err);
-      res.status(404);
-    }
-  }).then(function (newUser) {
-    res.status(201).send({id: newUser._id});     
-  });
-});
+router.route('/businesses/signup').post(authController.signup);
 
-router.route('/businesses/signedin').get(function (req, res) {
-
-});
+router.route('/businesses/signedin').get(authController.checkAuth);
 
 router.route('/businesses').get(function (req, res) {
   Business.find({}, function (err, all) {
