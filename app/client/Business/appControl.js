@@ -1,7 +1,9 @@
 // top level Equip controller
 
 angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial', 'main.control'])
-  .controller('EquipControl', function ($scope, $timeout,$log, $location, $mdSidenav, Auth) {
+  .controller('EquipControl', function ($scope, $timeout,$log, $location, $mdSidenav, Auth, $state) {
+
+    $scope.aab = 'Equip';
 
     //determine our route when this controller is loaded - this will display the sign in page if the user is not signe in, and the main page if 
     if (!Auth.isAuthorized()) {
@@ -10,6 +12,15 @@ angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial',
       $location.path('/main')
     }
 
+    $scope.logout = function () {
+      console.log('in here')
+      Auth.logout();
+      $state.transitionTo('signUp');
+    }
+
+    $scope.login = function () {
+      $state.transitionTo('signIn');
+    }
 
     $scope.toggleLeft = buildDelayedToggler('left');
 
