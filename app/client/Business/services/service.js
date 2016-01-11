@@ -81,7 +81,11 @@ angular.module('equip.services', [])
       })
     }
 
-
+    var logout = function () {
+      console.log('deleting')
+      window.localStorage.removeItem("EQUIP_TOKEN");
+    }
+ 
     var isAuthorized = function () {
       if (localStorage.EQUIP_TOKEN) {
         return true;
@@ -91,6 +95,7 @@ angular.module('equip.services', [])
 
 
   	return {
+      logout: logout,
   		signIn: signIn,
   		signUp: signUp,
       isAuthorized: isAuthorized

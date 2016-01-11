@@ -24,6 +24,10 @@
             <span>Equip</span>
           </h1>
           <span flex></span>
+
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="styles/dash.svg"></md-icon>
+          </md-button>
       
           <md-button ng-click='toggleLeft()' class="md-icon-button" aria-label="More">
             <md-icon md-svg-icon="styles/plus32.svg"></md-icon>
@@ -33,7 +37,7 @@
             LOGIN
           </md-button>
 
-          <md-button aria-label="More">
+          <md-button ng-click='logout()' aria-label="More">
             LOGOUT
           </md-button>
         </div>
