@@ -41,8 +41,8 @@ describe('RESTful API', function () {
       var businessCopy = JSON.parse(JSON.stringify(newBusiness));
       Business.create(businessCopy, function (err, business) {
         if (err) {
-          console.log(err, "Before Each");
-          throw err;
+          //console.log(err, "Before Each");
+          //throw err;
         }
 
         var testItems = [
@@ -68,14 +68,16 @@ describe('RESTful API', function () {
         var itemCopy = JSON.parse(JSON.stringify(testItems));
         Item.create(itemCopy, function (err, items) {
           if (err) {
-            console.log(err, "Before Each");
-            throw err;
+            //console.log(err, "Before Each");
+            //throw err;
           }
         });
       });
     });
     return done();
   });
+
+  
 
   describe('/api/items', function () {
 
@@ -100,8 +102,8 @@ describe('RESTful API', function () {
       it('responds with a 201 (Created) when a valid item is sent', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            console.log(err);
-            throw err;
+            //console.log(err);
+            //throw err;
           }
 
           var newItem = {
@@ -147,8 +149,8 @@ describe('RESTful API', function () {
       it('responds with a 200 and updated item when item with the matching `id` is updated', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            console.log(err);
-            throw err;
+            //console.log(err);
+            //throw err;
           }
 
           var newItem = {
@@ -192,8 +194,8 @@ describe('RESTful API', function () {
       it('responds with a 200 and "removed" string when item with the matching `id` is deleted', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            console.log(err);
-            throw err;
+            //console.log(err);
+            //throw err;
           }
 
           var newItem = {
@@ -236,8 +238,8 @@ describe('RESTful API', function () {
       it('responds with a 200 (OK) and all the items with busid', function (done) {
         Business.find({username: 'zz'}, function(err, business) {
           if (err) {
-            console.log(err);
-            throw err;
+            //console.log(err);
+            //throw err;
           }
 
           var newItem = {
