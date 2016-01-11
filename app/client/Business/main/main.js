@@ -10,6 +10,7 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
         $scope.messages = messages.data;
       });
 
+    //this needs to stay in main because the view side menu add item bar is in main's scope
     $scope.addTo = function () {
       var itemData = {
         item: $scope.item,
@@ -18,9 +19,9 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
         amt: $scope.amt,
         isIn: $scope.isIn,
         img: $scope.img,
-        dates: $scope.dates
+        dates: $scope.dates,
+        businessId: window.localStorage.EQUIP_TOKEN
       }
-      console.log('HOWDY PARTNER')
       Inventory.addItem(itemData)
         .then(function (response) {
           console.log('good POST', response);
@@ -28,7 +29,8 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
         })
     }
 
-  })  
+  })
+
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close()

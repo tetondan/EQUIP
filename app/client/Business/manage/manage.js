@@ -13,6 +13,7 @@ angular.module('inventory.manage', ['equip.services'])
         img: $scope.img,
         dates: $scope.dates
       }
+      console.log('something')
       Inventory.addItem(itemData)
         .then(function (response) {
           console.log('good POST', response);
