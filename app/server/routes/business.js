@@ -6,7 +6,6 @@ var helpers = require('../helpers/helpers.js');
 
 router.route('/businesses/signin').post(authController.signin);
 
-
 router.route('/businesses/signup').post(authController.signup);
 
 //router.route('/businesses/signedin').get(authController.checkAuth);

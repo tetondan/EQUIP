@@ -21,7 +21,6 @@ router.route('/items').post(function (req, res) {
     price: data.price,
     desc: data.desc,
     amt: data.amt,
-    isIn: true,
     img: data.img,
     businessId: data.businessId,
     dates: data.dates || []
@@ -48,18 +47,22 @@ router.route('/items/:id').get(function (req, res) {
 router.route('/items/:id').put(function (req, res) {
   var newItem = req.body;
   Item.findById(req.params.id, function(err, item){
-    for(var key in req.body){
-      item[key] = req.body[key];
-    }
-    // TODO: doesn't this callback need an item
-    item.save(function(err){
-      if(err){
-        // TODO: need to resolve if can't save item
-        console.log(err);
-      } else {
-        res.status(200).send(item);
+    console.log(item);
+    if(item !== undefined){
+      for(var key in req.body){
+        item[key] = req.body[key];
+        item.save(function(err){
+          if(err){
+            // TODO: need to resolve if can't save item
+            console.log(err);
+          } else {
+            res.status(200).send(item);
+          }
+        });
       }
-    });
+    } else { 
+      res.status(404).send('Item not found')
+    }
   });
 });
 
