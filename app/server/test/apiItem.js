@@ -51,7 +51,6 @@ describe('RESTful API', function () {
             price: 10,
             desc: 'ski',
             amt: 1,
-            isIn: true,
             img: 'img1',
             businessId: business._id,
             dates: []
@@ -61,7 +60,6 @@ describe('RESTful API', function () {
             price: 9,
             desc: 'sports',
             amt: 2,
-            isIn: true,
             img: 'img2',
             businessId: business._id,
             dates: []
