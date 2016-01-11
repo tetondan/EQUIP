@@ -17,6 +17,8 @@ angular.module('inventory.manage', ['equip.services'])
       Inventory.addItem(itemData)
         .then(function (response) {
           console.log('good POST', response);
+          $scope.inventory.push(response.data);
+          Inventory.update();
           return response;
         })
       //use function from equip.service to post to db

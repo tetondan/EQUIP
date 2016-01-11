@@ -9,8 +9,16 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       $state.transitionTo('signUp');
     }
 
+    Inventory.getItems()
+      .then(function (data) {
+        $scope.inventory = data.data;
+        console.log($scope.inventory);
+      })
+
+
     Messages.getMessages()
       .then(function (messages) {
+        console.log(',essages')
         $scope.messages = messages.data;
       });
 
@@ -29,12 +37,20 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       Inventory.addItem(itemData)
         .then(function (response) {
           console.log('good POST', response);
+          $scope.inventory.push(itemData);
+          Inventory.update();
           return response;
         })
+        //quick and dirty form reset
+        $scope.item = '';
+        $scope.price = '';
+        $scope.desc = '';
+        $scope.amt = '';
+        $scope.isIn = '';
+        $scope.img = '';
+        $scope.dates = '';
     }
-
   })
-
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close()
@@ -42,10 +58,5 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
           $log.debug("close LEFT is done");
         });
     };
-  })
-
-  .config(function() {
-    // $mdIconProvider
-    //   .iconSet('communication', 'img/icons/sets/communication-icons.svg', 24);
   })
 

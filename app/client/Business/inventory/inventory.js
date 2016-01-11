@@ -1,17 +1,16 @@
 angular.module('inventory.control', ['equip.services', 'ngMaterial'])
   .controller('InventoryControl', function ($scope, Inventory) {
 
-  	Inventory.getItems()
-  	  .then(function (data) {
-        $scope.inventory = data.data;
-        console.log($scope.inventory);
-      })
-
-    $scope.remove = function (id) {
+    $scope.remove = function (id, $index) {
+      console.log($index)
       Inventory.removeItem(id)
         .then(function (response) {
           console.log('removed', response);
         })
+      $scope.inventory.splice($index, 1);
+      Inventory.update();
     }
+
+    
 
   })

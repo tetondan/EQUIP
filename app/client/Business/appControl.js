@@ -10,11 +10,8 @@ angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial',
       $location.path('/main')
     }
 
+
     $scope.toggleLeft = buildDelayedToggler('left');
-
-
-
-    
 
     //=======Below are functions used in the add item side menu=====
     /**

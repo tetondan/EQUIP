@@ -1,7 +1,11 @@
 angular.module('equip.services', [])
 
     //========== INVENTORY ADD AND RETRIEVE SERVICES ================
-  .factory('Inventory', function ($http) {
+  .factory('Inventory', function ($http, $state) {
+
+    var update = function () {
+      $state.transitionTo('main.inventory');
+    }
 
     var addItem = function (data) {
 
@@ -42,6 +46,7 @@ angular.module('equip.services', [])
     }
 
     return {
+      update: update,
       removeItem: removeItem,
       addItem: addItem,
       getItems : getItems
@@ -60,7 +65,8 @@ angular.module('equip.services', [])
         data: data
       })
       .then(function (data) {
-        window.localStorage.setItem('EQUIP_TOKEN', data.data.id)
+        console.log('THIS IS THE BUS ID', data)
+        window.localStorage.setItem('EQUIP_TOKEN', data.data._id)
         return data;
       })
   	}
