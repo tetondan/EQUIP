@@ -162,6 +162,9 @@ describe('RESTful API------------------------', function () {
                 .set('Accept', 'application/json')
                 .end(function (err, resp) {
                   expect(resp.body.length).to.equal(2);
+                  expect(resp.body[0].items[0].amt).to.equal(1);
+                  expect(resp.body[0].items[1].amt).to.equal(2);
+
                 });
             });
           done();
@@ -180,8 +183,9 @@ describe('RESTful API------------------------', function () {
           if (err) {
             console.log(err);
           }
+
           request(app)
-            .delete('/api/messages/'+message._id)
+            .delete('/api/messages/'+message[0]._id)
             .end(function (err, resp) {
               expect(resp.body.messages).to.equal('deleted');
             });
