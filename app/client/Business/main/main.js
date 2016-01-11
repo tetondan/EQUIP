@@ -1,9 +1,13 @@
 
 angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'])
-  .controller('MainControl', function ($scope, Inventory, $state, $mdSidenav, $log, $timeout, Messages) {
+  .controller('MainControl', function ($scope, Inventory, $state, $mdSidenav, $log, $timeout, Auth, Messages) {
 
-    //this will transition us into the inventory view
-    $state.transitionTo('main.inventory');
+    //this will transition us into the inventory view if authorized
+    if (Auth.isAuthorized()) {
+      $state.transitionTo('main.inventory');
+    } else {
+      $state.transitionTo('signUp');
+    }
 
     Messages.getMessages()
       .then(function (messages) {
