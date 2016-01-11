@@ -4,6 +4,24 @@
 	<div class='mainView'>
     <div class='sidebar'>
       messages go here
+      <div ng-cloak>
+        <md-content>
+          <md-list  ng-repeat='message in messages'>
+          <md-divider ></md-divider>
+            <md-list-item class="md-3-line" 
+
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ message.name }}</h3>
+                <h4>{{ message.items }}</h4>
+                <p>{{ message.dates }}</p>
+              </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+
+       
+          </md-list>
+        </md-content>
+      </div>
     </div>
     <div class='inventory' ui-view></div>
   </div>
