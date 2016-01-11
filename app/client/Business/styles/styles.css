@@ -24,7 +24,7 @@
 }
 .viewContainer {
   width: 100%;
-  height: 500px;
+  height: 100vh;
   margin-top: 30px;
 }
 .itemInput {
@@ -59,12 +59,13 @@
 
 .inventory {
   float: right;
-  width: 900px;
-  height: 490px;
+  width: 100%;
+  height: 100vh;
   overflow: scroll;
 }
 .messages {
-  width: 400px;
+  width: 45%;
+  height: 100vh
   z-index: 1;
 }
 
@@ -98,14 +99,3 @@ textarea {
 	height: 300px;
 
 }
-
-
-
-
-
-
-
-
-
-
-
