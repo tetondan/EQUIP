@@ -9,7 +9,7 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       $state.transitionTo('signUp');
     }
 
-    Inventory.getItems()
+    Inventory.getItems(window.localStorage.EQUIP_TOKEN)
       .then(function (data) {
         $scope.inventory = data.data;
         console.log($scope.inventory);

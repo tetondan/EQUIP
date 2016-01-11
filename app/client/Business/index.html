@@ -21,8 +21,9 @@
             <a href='#/main'><md-icon md-svg-icon="styles/60728.svg"></a></md-icon>
           </md-button>
           <h1>
-            <span>Equip</span>
+            <span ng-model='aab'>{{ aab }}</span>
           </h1>
+          
           <span flex></span>
 
           <md-button class="md-icon-button" aria-label="More">
@@ -33,7 +34,7 @@
             <md-icon md-svg-icon="styles/plus32.svg"></md-icon>
           </md-button>
 
-          <md-button aria-label="More">
+          <md-button ng-click='login()' aria-label="More">
             LOGIN
           </md-button>
 

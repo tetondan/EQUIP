@@ -22,11 +22,9 @@ angular.module('equip.services', [])
 
     var getItems = function (businessId) {
 
-      businessId = businessId ? '/' + businessId : ''
-
       return $http({
         method: 'GET',
-        url: '/api/items'
+        url: '/api/items/getall/' + businessId
       })
       .then(function (data) {
         console.log(businessId)
@@ -71,13 +69,23 @@ angular.module('equip.services', [])
       })
   	}
 
-    var signIn = function () {
+    var signIn = function (username, password) {
+      var user = {
+        username: username,
+        password: password
+      }
       return $http({
-        method: 'GET',
-        url: '/api/businesses/signIn'
-      }).then(function (data) {
+        method: 'POST',
+        url: '/api/businesses/signin',
+        data: user
+      })
+      .then(function (data) {
         //this will sign us in as a business- use the token returned here to sign the business in
-        console.log(data);
+        console.log('goodSignin', data);
+        return data;
+      })
+      .catch(function (error) {
+        console.log('problem', error)
       })
     }
 
