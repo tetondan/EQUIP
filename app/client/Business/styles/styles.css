@@ -8,6 +8,12 @@
 }
 
 
+/*stylings for top level template*/
+.container {
+  width: 100%;
+  height: 900px;
+
+}
 .layout {
   width: 500px;
   /*margin: 0 auto;*/
@@ -70,22 +76,6 @@
   float: left;
   width: 30%;
   height: 100%;
-}
-
-.inventory {
-  width: 800px;
-  height: 400px;
-  overflow: scroll;
-}
-.messages {
-  width: 400px;
-  height: 400px;
-  z-index: 1;
-}
-.mainView {
-  width: 100%;
-  height: 400px;
-
 }
 
 textarea {
