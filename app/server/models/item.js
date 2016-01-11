@@ -10,7 +10,7 @@ var itemSchema = mongoose.Schema({
   img: {type: String},
   dates: [{type: Date}],
   businessId: {type: mongoose.Schema.Types.ObjectId, ref: 'Business', required: true}
-});
+}, {collection: 'item'});
 
 var Item = mongoose.model('Item', itemSchema);
 
