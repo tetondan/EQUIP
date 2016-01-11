@@ -4,10 +4,12 @@ mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI_TEST || 'mongodb://localhost/f
 
 // if want to force local mongo connection also set LOCATION to local by typing in
 // export LOCATION=LOCAL
-// then type in node server.js ...etc
-if (process.env.LOCATION === "LOCAL") {
-	mongoURI = 'mongodb://localhost/fearlessgerbil';
-}
+// // then type in node server.js ...etc
+// if (process.env.LOCATION === "LOCAL") {
+// 	mongoURI = 'mongodb://localhost/fearlessgerbil';
+// 
+console.log('----mongouri-----')
+console.log(mongoURI)
 
 mongoose.connect(mongoURI);
 // Run in seperate terminal window using 'mongod'
