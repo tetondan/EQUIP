@@ -1,13 +1,82 @@
 <!-- template for business main --> 
 
 
+  <section layout="row" flex>
 
 
-<button><a href='#/manage'>Manage Inventory</a></button>
-<button><a href='#/main'>Dashboard</a></button>
+    <!-- this is the html for the side nav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Add Item</h1>
+      </md-toolbar>
+      <md-content>
+
+			  <form>
+			    <md-input-container>
+			      <label>New Item</label>
+			      <input ng-model="item">
+			    </md-input-container>
+			    <md-input-container>
+			      <label>Quantity</label>
+			      <input ng-model="amt">
+			    </md-input-container>
+			    <md-input-container>
+			      <label>Price</label>
+			      <input ng-model="price">
+			    </md-input-container>
+			    <md-input-container>
+			      <label>img</label>
+			      <input ng-model="img">
+			    </md-input-container>
+			    <md-input-container>
+			      <label>dates</label>
+			      <input ng-model="dates">
+			    </md-input-container>
+			    <md-input-container>
+			      <label>desc</label>
+			      <textarea ng-model="desc" columns="1" md-maxlength="150" rows="5"></textarea>
+			    </md-input-container>
+			  <form>
+		
+      </md-content>
+	    <md-button ng-click='addTo()' class="md-raised md-primary">	 Add Item
+	  	</md-button>
+    </md-sidenav>
+    <!-- end sidenav  -->
+  </section>
+
+  <section class='mainView' flex layout='row'>
+
+  	<md-sidenav class="md-sidenav-left md-whiteframe-z1 messages" md-component-id="left" md-is-locked-open="true">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Notifications</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+	        <md-list-item class="md-3-line" ng-repeat="message in messages">
+	      	<md-divider ></md-divider>
+	        	<img />
+	        	<div class="md-list-item-text" layout="column">
+	          	<h3>{{ message.name }}</h3>
+	          	<h4>{{ message.dates }}</h4>
+	          	<p>{{ message.items }}</p>
+	        	</div> 
+	        	<md-divider ></md-divider>
+	      	</md-list-item>
+	      	<md-divider ></md-divider>
+      	</md-content>
+    </md-sidenav>
+
+  <!-- this is where the inventory view will be rendered -->
+  	<div class='inventory'>
+    	<div ui-view></div>
+  	</div>
+  	
+  </section>
+
+</div>
 
 
 
 
-
+	<!-- the inventory view gets registered here -->
 

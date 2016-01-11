@@ -78,7 +78,30 @@ angular.module('equip.services', [])
   	}
 
   })
+  .factory('Messages', function ($http) {
 
+
+
+    var getMessages = function (data) {
+      return $http({
+        method: 'GET',
+        url: '/api/messages'
+      })
+      .then(function (data) {
+        console.log(data);
+        console.log('we have the datas', data);
+        return data;
+      });
+    }
+
+    return {
+      getMessages: getMessages
+    }
+
+
+
+
+  })
 
 
 

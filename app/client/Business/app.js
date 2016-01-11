@@ -16,8 +16,7 @@ angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth
         templateUrl : 'main/index.html',
         controller: 'MainControl'
       })
-      .state('inventory', {
-        url: '/inventory', 
+      .state('main.inventory', {
         templateUrl : 'inventory/index.html',
         controller: 'InventoryControl'
       })

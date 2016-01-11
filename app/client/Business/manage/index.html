@@ -1,19 +1,36 @@
 <!-- template for managing/adding items -->
-<div class='itemInput' >
-	<button><a href='#/inventory'>view inventory</a></button>
-	<form ng-submit='addTo()'>
-		<input ng-model='item' placeholder='item name'></input>
-		<input ng-model='amt' placeholder='quantity'></input>
-		<input ng-model='price' placeholder='price'></input>
-		<input ng-model='isIn' placeholder='currently in stock'></input>
-		<input ng-model='img' placeholder='image'></input>
-		<input ng-model='dates' placeholder='dates'></input>
-		<textarea ng-model='desc' placeholder='description'></textarea>
-		<input type='submit'>add to inventory</input>
-	</form>
-  <button>add item</button>
-<div>
-	
+<div class='layout' layout="column" ng-cloak class="md-inline-form">
+  <md-content md-theme="docs-light" layout-gt-sm="column" layout-padding>
+    <form name='userForm'>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-button ng-click='' class="md-raised md-primary">Submit</md-button>
+    <form>
+  <md-content>
+</div>
+
 
 
 

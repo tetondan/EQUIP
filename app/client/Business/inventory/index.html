@@ -1,12 +1,25 @@
 <!-- template for viewing inventory -->
-<ul class='inventories' ng-repeat='item in inventory'>
 
-  <div class='item' ng-click='addToInventory()' >
-    <a>Item: {{item.item}}</a>
-    <a>Price: {{item.price}}</a>
-    <a>Quantity: {{item.amt}}</a>
-    <a>In Stock: {{item.isIn}}</a>
-    <a> {{item.img}}</a>
-  </div>
+<div ng-cloak>
+  <md-content class="md-padding" layout="row" layout-wrap layout-align="center center" layout-xs="row" >
 
-</ul>
+    <div flex="100" flex-sm="100" flex-xs="100" layout="column">
+      <md-card ng-repeat='item in inventory'>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ item.item }}</span>
+            <span class="md-subhead"> Quantity: {{ item.amt }}</span>
+            <span class="md-subhead">$$ {{item.price }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Remove</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>
+

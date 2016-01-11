@@ -32,7 +32,7 @@ module.exports = function (app, express) {
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());
-  app.use(express.static(__dirname + '/../client'));
+  app.use(express.static(__dirname + '/../client/business'));
   app.use(cookieParser('shhhh, very secret'));
   app.use(session({secret: '1234567890QWERTY'}));
   app.use('/api', business);
