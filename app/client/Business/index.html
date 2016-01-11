@@ -12,7 +12,7 @@
 
 	<body>
 
-    <div class='super' ng-controller='EquipControl'>
+    <div class='contiainer' ng-controller='EquipControl'>
 
       <md-toolbar>
         <div class="md-toolbar-tools">
@@ -26,22 +26,22 @@
           <md-button class="md-icon-button" aria-label="Favorite">
            <a href='#/main'> <md-icon md-svg-icon="styles/dash.svg" style="color: greenyellow;"></md-icon></a>
           </md-button>
+          <md-button ng-click='toggleLeft()' class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="styles/envelope43.svg"></md-icon>
+          </md-button>
           <md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="styles/plus.svg"></md-icon>
+            <md-icon md-svg-icon="styles/plus32.svg"></md-icon>
           </md-button>
         </div>
       </md-toolbar>
 
-      <!-- banner / header  -->
-      <div class='topContainer'>
-
-       <!-- Everything will be rendered into our view here -->
-      <div class='viewContainer'>
-        <div ui-view></div>
-      </div>
-        
-      </div>
     </div>
+
+    <!-- Everything will be rendered into our view here -->
+    <div ui-view></div>
+
+        
+
 
 
 
@@ -57,12 +57,12 @@
 
 
     <!-- // <script src='material_modules/form.js'></script> -->
-    <script src='appControl.js'></script>
     <script src='main/main.js'></script>
     <script src='inventory/inventory.js'></script>
     <script src='auth/auth.js'></script>
     <script src='manage/manage.js'></script>
     <script src='services/service.js'></script>
+    <script src='appControl.js'></script>
 
 
     <script src='app.js'></script>
