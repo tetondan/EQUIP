@@ -25,7 +25,7 @@ router.route('/businesses/signup').post(function (req, res) {
       res.status(404);
     }
   }).then(function (newUser) {
-    res.status(201).send({id: newUser._id});     
+    res.status(201).send(newUser);     
   });
 });
 
