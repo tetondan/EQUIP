@@ -16,7 +16,7 @@ var clearDB = function (done) {
 };
 
 
-describe('RESTful API', function () {
+describe('RESTful API------------------------', function () {
   before(function (done) {
     if (mongoose.connection.db) {
       return done();
@@ -256,9 +256,9 @@ describe('RESTful API', function () {
             .set('Accept', 'application/json')
             .end(function (err, resp) {
               request(app)
-                .get('/api/items/getall/'+business._id)
+                .get('/api/items/getall/'+business[0]._id)
                 .end(function (err, resp) {
-                  expect(resp.body.length).to.equal(6);
+                  expect(resp.body.length).to.equal(5);
                 });
             });
 
@@ -269,30 +269,6 @@ describe('RESTful API', function () {
     });
 
   });  
-
-  // describe('/api/items/checkin/:id', function () {
-
-  //   describe('GET', function () {
-
-  //     it('responds with a 200 (OK)', function (done) {
-
-  //     });
-
-  //   });
-
-  // }); 
-
-  // describe('/api/items/checkout/:id', function () {
-
-  //   describe('GET', function () {
-
-  //     it('responds with a 200 (OK)', function (done) {
-
-  //     });
-
-  //   });
-
-  // });
 
 
 });

@@ -14,7 +14,7 @@ var clearDB = function (done) {
   mongoose.connection.collections['business'].remove(done);
 };
 
-describe('RESTful API', function () {
+describe('RESTful API------------------------', function () {
   before(function (done) {
     if (mongoose.connection.db) {
       return done();
