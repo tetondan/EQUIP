@@ -16,9 +16,9 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       })
 
 
-    Messages.getMessages()
+    Messages.getMessages(window.localStorage.EQUIP_TOKEN)
       .then(function (messages) {
-        console.log(',essages')
+        console.log(messages);
         $scope.messages = messages.data;
       });
 

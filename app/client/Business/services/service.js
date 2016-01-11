@@ -114,14 +114,15 @@ angular.module('equip.services', [])
 
 
 
-    var getMessages = function (data) {
+    var getMessages = function (businessId) {
+
+
       return $http({
         method: 'GET',
-        url: '/api/messages'
+        url: '/api/messages/' + businessId
       })
       .then(function (data) {
-        console.log(data);
-        console.log('we have the datas', data);
+        console.log(' here are the messages', data);
         return data;
       });
     }
