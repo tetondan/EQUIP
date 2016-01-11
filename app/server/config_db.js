@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/fearlessgerbil';
+mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI_TEST || 'mongodb://localhost/fearlessgerbil';
 
 // if want to force local mongo connection also set LOCATION to local by typing in
 // export LOCATION=LOCAL
