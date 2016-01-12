@@ -57,8 +57,12 @@
 	        	<img />
 	        	<div class="md-list-item-text" layout="column">
 	          	<h3>{{ message.name }}</h3>
-	          	<h4>{{ message.dates }}</h4>
-	          	<p>{{ message.items }}</p>
+	          	<p>{{ message.items[0].item }}</p>
+              <p> From: {{ message.dates[0] }}</p> 
+              <p>To: {{ message.dates[message.dates.length-1] }}</p>
+              <p> {{message.email}}</p>
+              <p> {{message.phone}}</p>
+
 	        	</div>
 	        	<md-divider ></md-divider>
 	      	</md-list-item>

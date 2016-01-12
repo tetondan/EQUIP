@@ -16,10 +16,17 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       })
 
 
-    Messages.getMessages()
+    Messages.getMessages(window.localStorage.EQUIP_TOKEN)
       .then(function (messages) {
-        console.log(',essages')
-        $scope.messages = messages.data;
+        console.log(moment);
+       $scope.messages =  messages.data.map(function (message) {
+         message.dates = message.dates.map(function (date) {
+            return moment(date).calendar();
+          })
+         return message;
+        })
+        // $scope.messages = messages.data;
+
       });
 
     //this needs to stay in main because the view side menu add item bar is in main's scope

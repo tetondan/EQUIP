@@ -25,9 +25,7 @@ angular.module('Equip', ['ui.router', 'equip.control', 'inventory.manage', 'auth
 				templateUrl : 'manage/index.html',
 				controller: 'InventoryManage'
 			})
-			.state('itemDetails', {
-				url: '/details'
-			})
+
   }).run(function () {
   	console.log('running');
   })
