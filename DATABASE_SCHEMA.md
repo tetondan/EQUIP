@@ -1,6 +1,7 @@
 # Database Schema:
 
-  # Businesses :
+  Businesses :
+
       username: string, required
 
       password: string, required
@@ -15,7 +16,8 @@
 
       email: string
 
-  # Items :
+  Items :
+
       item(item name): string, required
 
       price: number, required
@@ -30,7 +32,8 @@
 
       businessId: ObjectId of business the item belongs too, required
 
-  # Messages :
+  Messages :
+
       name(of customer): string, required
       
       email: string
