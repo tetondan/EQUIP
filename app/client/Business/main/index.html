@@ -2,8 +2,6 @@
 
 
   <section layout="row" flex>
-
-
     <!-- this is the html for the side nav -->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
       <md-toolbar class="md-theme-indigo">
@@ -45,6 +43,8 @@
     <!-- end sidenav  -->
   </section>
 
+
+  <!--   this is a the main view that will house our message notification side nav and the ui view that will render our inventory and all of it's items -->
   <section class='mainView' flex layout='row'>
 
   	<md-sidenav class="md-sidenav-left md-whiteframe-z1 messages" md-component-id="left" md-is-locked-open="true">
@@ -62,7 +62,6 @@
               <p>To: {{ message.dates[message.dates.length-1] }}</p>
               <p> {{message.email}}</p>
               <p> {{message.phone}}</p>
-
 	        	</div>
 	        	<md-divider ></md-divider>
 	      	</md-list-item>
@@ -70,22 +69,20 @@
       	</md-content>
     </md-sidenav>
 
-  <!-- this is where the inventory view will be rendered -->
+    <!-- here is the card that will be used as a backing for our inventory items -->
   	<div class='inventory'>
-
       <md-card class='inventoryCard'>
-
-          <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Inventory</h1>
-          </md-toolbar>
-
+        <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Inventory</h1>
+        </md-toolbar>
         <md-card-content layout="column" layout-align="space-between">
+
+          <!--here is where the items in our inventory will be rendered - see the inventory.html file in the inventory directory-->
           <div ui-view></div>
+
         </md-card-content>
       </md-card>
-
   	</div>
 
   </section>
 
-</div>
