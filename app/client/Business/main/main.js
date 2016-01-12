@@ -16,15 +16,17 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       })
 
     //initializing our message feed
-    Messages.getMessages(window.localStorage.EQUIP_TOKEN)
-      .then(function (messages) {
-       $scope.messages =  messages.data.map(function (message) {
-          message.dates = message.dates.map(function (date) {
-            return moment(date).calendar();
+    $interval(function () {
+      Messages.getMessages(window.localStorage.EQUIP_TOKEN)
+        .then(function (messages) {
+         $scope.messages =  messages.data.map(function (message) {
+            message.dates = message.dates.map(function (date) {
+              return moment(date).calendar();
+            })
+            return message;
           })
-          return message;
-        })
-      });
+        });
+    }, 1000)
 
     //sticking point:  although it seems like it should be in the Inventory module/controller - this add to function needs to be here in main so that we maintain scope access
     $scope.addTo = function () {
