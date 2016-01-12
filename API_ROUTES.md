@@ -24,7 +24,7 @@
     /api/businesses/signup - POST - creates new business on success returns full
                                     business object including unique business id
                                     ApiSuccessExample Success-Response:
-                                      201 OK
+                                      200 OK
                                       {
                                         "_id": "569411111c244bdc173effdf",
                                        "username": "zack",
@@ -95,7 +95,7 @@
     /api/items/:id - GET - retrieves item matching unique id supplied and returms 
                            item object
                            ApiSuccessExample Success-Response:
-                             201 OK
+                             200 OK
                              {
                                "_id": ""569411111c244bdc173effdf"",
                                "item": "football",
@@ -109,7 +109,7 @@
                    - PUT - updates existing item based on its unique item id, 
                            if item id does not exist will return a 404
                            ApiSuccessExample Success-Response:
-                             201 OK
+                             200 OK
                              {
                                "_id": ""569411111c244bdc173effdf"",
                                "item": "football",
@@ -170,7 +170,7 @@
                   - POST - posts a new message to the database, on success returns 
                            the entire message object
                            ApiSuccessExample Success-Response:
-                             200 OK
+                             201 OK
                              {
                                "_id": "369411111c244bdc173effaf",
                                "name": "zack",
