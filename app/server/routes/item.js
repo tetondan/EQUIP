@@ -69,9 +69,15 @@ router.route('/items/:id').put(function (req, res) {
 //allows the business owner to delete items from inventory;
 router.route('/items/:id').delete(function (req, res) {
   var itemId = req.params.id;
-  Item.remove({'_id': itemId}, function(err, item){
-    res.status(200).send({messages: 'item removed'});
-  });
+  Item.find({'_id': itemId}, function(err, item){
+    if(item !== undefined){  
+      Item.remove({'_id': itemId}, function(err, item){
+        res.status(200).send(item);
+      });
+    } else {
+      res.status(404).send('item not found')
+    } 
+  })
 });
 
 //gets all items by buisness id (to be used for customer view page);
