@@ -10,9 +10,7 @@
             <span ng-show='false' class="md-subhead">{{$index}}</span>
             <span class="md-headline">{{ item.item }}</span>
             <span>$$ {{item.price }}</span>
-            <div class='description'>
-              {{item.desc}}
-            </div>
+            <div class='description'>{{item.desc}}</div>
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-sm card-media">
@@ -26,11 +24,10 @@
         </md-card-content>
 
         <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click='remove(item._id, $index)'>Remove</md-button>
+          <md-button ng-click='remove(item._id, $index)' class="md-raised md-primary">Remove</md-button>
         </md-card-actions>
       </md-card>
 
     </div>
   </md-content>
 </div>
-
