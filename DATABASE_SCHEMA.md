@@ -1,5 +1,6 @@
 # Database Schema:
 
+
   Businesses :
 
       username: string, required
@@ -16,6 +17,7 @@
 
       email: string
 
+
   Items :
 
       item(item name): string, required
@@ -31,6 +33,7 @@
       dates(indicates dates item -not- available): array of Javascript Date Objects
 
       businessId: ObjectId of business the item belongs too, required
+
 
   Messages :
 
