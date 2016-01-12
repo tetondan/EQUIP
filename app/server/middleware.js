@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var business = require('./routes/business');
 var item = require('./routes/item');
 var message = require('./routes/message');
-
+var cors = require('cors')
 // Middleware can be thought of as a magical pipe that water flows through.
 // Each drop of water starts at the top opening of the pipe. As it falls through,
 // a magic spell is cast on it, and then it is spit out the bottom of the pipe
@@ -29,6 +29,7 @@ var message = require('./routes/message');
 module.exports = function (app, express) {
   //app.use(morgan('dev'));
   app.use(partials());
+  app.use(cors());
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded());
