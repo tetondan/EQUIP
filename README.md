@@ -1,4 +1,7 @@
-# FEARLESSGERBIL
+# EQUIP
+EQUIP is a rental buisness inventory management system. 
+EQUIP is a buisness and client side interface allowing for seamless interaction for all of your
+inventory needs.
 
 
 ### Setup
