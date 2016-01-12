@@ -1,6 +1,6 @@
 
 angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'])
-  .controller('MainControl', function ($scope, Inventory, $state, $mdSidenav, $log, $timeout, Auth, Messages) {
+  .controller('MainControl', function ($scope, Inventory, $state, $mdSidenav, $log, $timeout, Auth, Messages, $interval) {
 
     //this will transition us into the inventory view if authorized
     if (Auth.isAuthorized()) {
@@ -9,27 +9,24 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
       $state.transitionTo('signUp');
     }
 
+    //initializing our inventory
     Inventory.getItems(window.localStorage.EQUIP_TOKEN)
       .then(function (data) {
         $scope.inventory = data.data;
-        console.log($scope.inventory);
       })
 
-
+    //initializing our message feed
     Messages.getMessages(window.localStorage.EQUIP_TOKEN)
       .then(function (messages) {
-        console.log(moment);
        $scope.messages =  messages.data.map(function (message) {
-         message.dates = message.dates.map(function (date) {
+          message.dates = message.dates.map(function (date) {
             return moment(date).calendar();
           })
-         return message;
+          return message;
         })
-        // $scope.messages = messages.data;
-
       });
 
-    //this needs to stay in main because the view side menu add item bar is in main's scope
+    //sticking point:  although it seems like it should be in the Inventory module/controller - this add to function needs to be here in main so that we maintain scope access
     $scope.addTo = function () {
       var itemData = {
         item: $scope.item,
@@ -58,6 +55,7 @@ angular.module('main.control', ['equip.services', 'ngMaterial', 'equip.services'
         $scope.dates = '';
     }
   })
+  //this controller is associated with opening and closing the add item side nav
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close()

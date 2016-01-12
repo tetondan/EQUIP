@@ -8,27 +8,22 @@ angular.module('equip.services', [])
     }
 
     var addItem = function (data) {
-
       return $http({
         method: 'POST',
         url: '/api/items',
         data: data
       })
       .then(function (response) {
-        console.log('good post', response);
         return response;
       })
     }
 
     var getItems = function (businessId) {
-
       return $http({
         method: 'GET',
         url: '/api/items/getall/' + businessId
       })
       .then(function (data) {
-        console.log(businessId)
-        console.log('we have the datas', data);
         return data;
       })
     }
@@ -38,8 +33,7 @@ angular.module('equip.services', [])
         method: 'DELETE',
         url: '/api/items/' + id 
       }).then(function (data) {
-        //this will sign us in as a business- use the token returned here to sign the business in
-        console.log(data);
+        return data;
       })
     }
 
@@ -55,7 +49,6 @@ angular.module('equip.services', [])
   //================= AUTHORIZATION SERVICES =======================
   .factory('Auth', function ($http) {
 
-    //remember to JSON stringify data
   	var signUp = function (data) {
       return $http({
         method: 'POST',
@@ -63,8 +56,7 @@ angular.module('equip.services', [])
         data: data
       })
       .then(function (data) {
-        console.log('THIS IS THE BUS ID', data)
-        window.localStorage.setItem('EQUIP_TOKEN', data.data._id)
+        window.localStorage.setItem('EQUIP_TOKEN', data.data._id);
         return data;
       })
   	}
@@ -80,17 +72,14 @@ angular.module('equip.services', [])
         data: user
       })
       .then(function (data) {
-        //this will sign us in as a business- use the token returned here to sign the business in
-        console.log('goodSignin', data);
         return data;
       })
       .catch(function (error) {
-        console.log('problem', error)
+        console.log('problem', error);
       })
     }
 
     var logout = function () {
-      console.log('deleting')
       window.localStorage.removeItem("EQUIP_TOKEN");
     }
  
@@ -100,7 +89,6 @@ angular.module('equip.services', [])
       }
       return false;
     }
-
 
   	return {
       logout: logout,
@@ -112,17 +100,12 @@ angular.module('equip.services', [])
   })
   .factory('Messages', function ($http) {
 
-
-
     var getMessages = function (businessId) {
-
-
       return $http({
         method: 'GET',
         url: '/api/messages/' + businessId
       })
       .then(function (data) {
-        console.log(' here are the messages', data);
         return data;
       });
     }
@@ -131,10 +114,7 @@ angular.module('equip.services', [])
       getMessages: getMessages
     }
 
-
-
-
-  })
+  });
 
 
 

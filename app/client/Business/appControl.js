@@ -5,15 +5,15 @@ angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial',
 
     $scope.aab = 'Equip';
 
-    //determine our route when this controller is loaded - this will display the sign in page if the user is not signe in, and the main page if 
+    //determine our route when this controller is loaded - this will display the sign in page if the user is not signe in, and the main page otherwise
     if (!Auth.isAuthorized()) {
       $location.path('/signUp');
     } else {
       $location.path('/main')
     }
 
+    //the logout function will handle logging us out and taking us back to the sign up page
     $scope.logout = function () {
-      console.log('in here')
       Auth.logout();
       $state.transitionTo('signUp');
     }
@@ -22,9 +22,10 @@ angular.module('equip.control', ['equip.services', 'auth.control', 'ngMaterial',
       $state.transitionTo('signIn');
     }
 
-    $scope.toggleLeft = buildDelayedToggler('left');
 
-    //=======Below are functions used in the add item side menu=====
+    //=======UI Side Nav components/functions=====
+
+    $scope.toggleLeft = buildDelayedToggler('left');
     /**
      * Supplies a function that will continue to operate until the
      * time is up.
