@@ -1,6 +1,9 @@
 # Api Routes: 
 
   all objects posted and returned in JSON format
+
+  all POST data must be sent in JSON form, for examples see DATABASE_SCHEMA
+  https://github.com/fearlessgerbil/fearlessgerbil/blob/master/DATABASE_SCHEMA.md
   
   ### /business :
 
