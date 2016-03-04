@@ -33,7 +33,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Quote from You ##
 
-  'It is our goal to let your equipment work for you! No more long hours managing your inventory!' Dan Frehner, Equip 
+  'It is our goal to let your equipment work for you! No more long hours managing your inventory!' Daniel Frehner, Equip 
 
 ## How to Get Started ##
 
